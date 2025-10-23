@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/10/2025 às 02:45
+-- Tempo de geração: 24/10/2025 às 01:30
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -111,7 +111,8 @@ CREATE TABLE `pedido` (
   `cod_pedido` int(11) NOT NULL,
   `cod_cliente` int(11) NOT NULL,
   `valor_total` float NOT NULL,
-  `endereco` varchar(100) NOT NULL
+  `endereco` varchar(100) NOT NULL,
+  `datahora` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
