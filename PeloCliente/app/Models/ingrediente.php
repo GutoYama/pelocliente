@@ -1,5 +1,6 @@
 <?php
     namespace App\Models;
+    use Illuminate\Support\Facades\DB;
 
     final class Ingrediente {
         public $cod_ingrediente;
@@ -26,6 +27,14 @@
             return DB::select(
                 'SELECT * FROM ingrediente WHERE cod_ingrediente=?',
                 [$cod_ingrediente]
+            );
+        }
+
+        public function listarIngrediente(){
+            return DB::select(
+                'SELECT i.cod_ingrediente, i.descricao, i.quantidade, i.cod_unidade, u.sigla, i.valor_unit FROM ingrediente i
+                INNER JOIN unidade u
+                ON i.cod_unidade = u.cod_unidade'
             );
         }
     

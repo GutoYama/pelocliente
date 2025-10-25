@@ -1,5 +1,6 @@
 <?php
     namespace App\Models;
+    use Illuminate\Support\Facades\DB;
 
     final class Unidade {
         public $cod_unidade;
@@ -24,6 +25,12 @@
             return DB::select(
                 'SELECT * FROM unidade WHERE cod_unidade=?',
                 [$cod_unidade]
+            );
+        }
+
+        public function listarUnidade(){
+            return DB::select(
+                'SELECT * FROM unidade'
             );
         }
     

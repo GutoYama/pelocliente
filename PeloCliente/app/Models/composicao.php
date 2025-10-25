@@ -1,5 +1,6 @@
 <?php
     namespace App\Models;
+    use Illuminate\Support\Facades\DB;
 
     final class Composicao{
         public $cod_prato;
@@ -24,6 +25,19 @@
             return DB::select(
                 'SELECT * FROM composicao WHERE cod_prato=? AND cod_ingrediente=?',
                 [$cod_prato, $cod_ingrediente]
+            );
+        }
+
+        public function listarComposicao(){
+            return DB::select(
+                'SELECT c.cod_prato, p.descricao AS descricao_prato, c.cod_ingrediente, i.descricao AS descricao_ingrediente, c.quantidade, u.sigla FROM composicao c
+                INNER JOIN prato p
+                ON c.cod_prato = p.cod_prato
+                INNER JOIN ingrediente i
+                ON c.cod_ingrediente = i.cod_ingrediente
+                INNER JOIN unidade u
+                ON i.cod_unidade = u.cod_unidade;
+                '
             );
         }
     
