@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 use App\Models\Cliente;
 use App\Models\Fornecedor;
 use App\Models\Prato;
@@ -21,7 +23,26 @@ Route::get('/fornecedor', function(){
     $fornecedor = new Fornecedor;
     
     return view ('fornecedor', ['fornecedores'=>$fornecedor->listarFornecedor()]);
+})->name('fornecedor');
+
+
+Route::get('/fornecedor/adicionar', function(){
+    return view ('adicionarfornecedor');
 });
+
+Route::post('/fornecedor/adicionar_bd', function(Request $request){
+    $fornecedor = new Fornecedor;
+
+    $fornecedor->addFornecedor(
+        $request->input('nome_fantasia'),
+        $request->input('endereco'),
+        $request->input('cnpj'),
+        $request->input('telefone')
+    );
+    
+    return redirect()->route('fornecedor');
+});
+
 
 Route::get('/fornecedorEditar', function(){
     return view('welcome');
@@ -39,7 +60,28 @@ Route::get('/cliente', function(){
     $cliente = new Cliente;
     
     return view ('cliente', ['clientes'=>$cliente->listarCliente()]);
+})->name('cliente');
+
+
+Route::get('/cliente/adicionar', function() {
+    return view('adicionarcliente');
 });
+
+Route::post('/cliente/adicionar_bd', function(Request $request) {
+    $cliente = new Cliente;
+
+    $cliente->addCliente(
+        $request->input('nome'),
+        $request->input('cpf'),
+        $request->input('endereco'),
+        $request->input('telefone'),
+        $request->input('email')
+    );
+
+    return redirect()->route('cliente');
+});
+
+
 
 Route::get('/clienteEditar', function(){
     return view('welcome');
@@ -57,7 +99,25 @@ Route::get('/prato', function(){
     $prato = new Prato;
     
     return view ('prato', ['pratos'=>$prato->listarPrato()]);
+})->name('prato');
+
+
+Route::get('/prato/adicionar', function() {
+    return view('adicionarprato');
 });
+
+Route::post('/prato/adicionar_bd', function(Request $request) {
+    $prato = new Prato;
+
+    $prato->addPrato(
+        $request->input('descricao'),
+        $request->input('valor')
+    );
+
+    return redirect()->route('prato');
+});
+
+
 
 Route::get('/pratoEditar', function(){
     return view('welcome');
@@ -129,7 +189,25 @@ Route::get('/unidade', function(){
     $unidade = new Unidade;
     
     return view ('unidade', ['unidades'=>$unidade->listarUnidade()]);
+})->name('unidade');
+
+
+Route::get('/unidade/adicionar', function() {
+    return view('adicionarunidade');
 });
+
+Route::post('/unidade/adicionar_bd', function(Request $request) {
+    $unidade = new Unidade;
+
+    $unidade->addUnidade(
+        $request->input('descricao'),
+        $request->input('sigla')
+    );
+
+    return redirect()->route('unidade');
+});
+
+
 
 Route::get('/unidadeEditar', function(){
     return view('welcome');
