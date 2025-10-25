@@ -19,8 +19,9 @@
                     <td>{{$fornecedor->endereco}}</td>
                     <td>{{$fornecedor->cnpj}}</td>
                     <td>{{$fornecedor->telefone}}</td>
-                    <td>Botao Editar</td>
-                    <td>Botao Excluir</td>
+                    
+                    <td> <a href="{{ route('fornecedorEditar', $fornecedor->cod_fornecedor) }}">Editar</a> </td>
+                    <td> <a href="{{ route('fornecedorExcluir', $fornecedor->cod_fornecedor) }}">Excluir</a> </td>
                 </tr>
             @endforeach
 
