@@ -1,5 +1,6 @@
 <?php
     namespace App\Models;
+    use Illuminate\Support\Facades\DB;
 
     final class Prato {
         public $cod_prato;
@@ -24,6 +25,12 @@
             return DB::select(
                 'SELECT * FROM prato WHERE cod_prato=?',
                 [$cod_prato]
+            );
+        }
+
+        public function listarPrato(){
+            return DB::select(
+                'SELECT * FROM prato'
             );
         }
     

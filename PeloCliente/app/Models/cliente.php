@@ -23,7 +23,11 @@
         }
 
         public function selectCliente($cod_cliente){
-            DB::select('select * from cliente where cod_cliente=?', [$cod_cliente]);
+            return DB::select('select * from cliente where cod_cliente=?', [$cod_cliente]);
+        }
+
+        public function listarCliente(){
+            return DB::select('select * from cliente');
         }
 
         public function deleteCliente($cod_cliente){
