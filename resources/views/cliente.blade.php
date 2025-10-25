@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+    
     <body>
+        @include('partials.nav',['x' => 1])
+        @include('partials.tabelas')
         <table>
             <thead>
                 <tr>

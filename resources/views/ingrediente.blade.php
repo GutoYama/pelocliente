@@ -2,6 +2,8 @@
 <html>
     <body>
         <table>
+            @include('partials.nav', ['x' => 5])
+            @include('partials.tabelas')
             <thead>
                 <tr>
                     <th>Descrição</th>

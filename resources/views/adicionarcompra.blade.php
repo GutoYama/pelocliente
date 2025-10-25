@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <body>
+    <body>        
         <form action="/compra/adicionar_bd" method="POST">
             @csrf
 

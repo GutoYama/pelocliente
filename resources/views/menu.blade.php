@@ -8,8 +8,6 @@
         body{
             display: flex;
             flex-direction: column;
-            margin: 0;
-            padding: 0;
         }
 
         .centro{
@@ -55,6 +53,7 @@
         a:hover{
             text-decoration: underline;
         }
+        
         h2{
             /*border: 1px solid black;*/
         }
@@ -71,18 +70,7 @@
 
 <body>
     <div class="centro">
-        <nav>
-            <h1 class="menu">Menu</h1>
-            <h2 class="menuopcao"><a href="/cliente">Cliente</a></h2>
-            <h2 class="menuopcao"><a href="/composicao">Composição</a></h2>
-            <h2 class="menuopcao"><a href="/compra">Compra</a></h2>
-            <h2 class="menuopcao"><a href="/fornecedor">Fornecedor</a></h2>
-            <h2 class="menuopcao"><a href="/ingrediente">Ingrediente</a></h2>
-            <h2 class="menuopcao"><a href="/unidade">Unidade</a></h2>
-            <h2 class="menuopcao"><a>Itens Pedido</a></h2>
-            <h2 class="menuopcao"><a>Pedidos</a></h2>
-            <h2 class="menuopcao"><a href="/pratos">Pratos</a></h2>
-        </nav>
+        @include('partials.nav', ['x'=>0])
 
         <main>
 
