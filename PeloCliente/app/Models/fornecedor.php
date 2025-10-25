@@ -1,5 +1,6 @@
 <?php
     namespace App\Models;
+    use Illuminate\Support\Facades\DB;
 
     final class Fornecedor {
         public $cod_fornecedor;
@@ -26,6 +27,12 @@
             return DB::select(
                 'SELECT * FROM fornecedor WHERE cod_fornecedor=?',
                 [$cod_fornecedor]
+            );
+        }
+
+        public function listarFornecedor(){
+            return DB::select(
+                'SELECT * FROM fornecedor'
             );
         }
     
