@@ -4,6 +4,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Código da Compra</th>
                     <th>Quantidade</th>
                     <th>Ingrediente</th>
                     <th>Fornecedor</th>
@@ -15,6 +16,7 @@
             <tbody>
                 @foreach($compras as $compra)
                     <tr>
+                        <td>{{ $compra->cod_compra }}</td>
                         <td>{{ $compra->quantidade }} {{ $compra->sigla }}</td>
                         <td>{{ $compra->descricao_ingrediente }}</td>
                         <td>{{ $compra->nome_fantasia }}</td>

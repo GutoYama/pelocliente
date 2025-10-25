@@ -135,7 +135,29 @@ Route::get('/ingrediente', function(){
     $ingrediente = new Ingrediente;
     
     return view ('ingrediente', ['ingredientes'=>$ingrediente->listarIngrediente()]);
+})->name('ingrediente');
+
+
+Route::get('/ingrediente/adicionar', function() {
+    $unidade = new Unidade;
+    
+    return view('adicionaringrediente', ['unidades'=>$unidade->listarUnidade()]);
 });
+
+Route::post('/ingrediente/adicionar_bd', function(Request $request) {
+    $ingrediente = new Ingrediente;
+
+    $ingrediente->addIngrediente(
+        $request->input('descricao'),
+        $request->input('quantidade'),
+        $request->input('unidade'),
+        $request->input('valor_unit')
+    );
+
+    return redirect()->route('ingrediente');
+});
+
+
 
 Route::get('/ingredienteEditar', function(){
     return view('welcome');
@@ -171,7 +193,30 @@ Route::get('/compra', function(){
     $compra = new Compra;
     
     return view ('compra', ['compras'=>$compra->listarCompra()]);
+})->name('compra');
+
+
+
+Route::get('/compra/adicionar', function() {
+    $ingrediente = new Ingrediente;
+    $fornecedor = new Fornecedor;
+    
+    return view('adicionarcompra', ['ingredientes'=>$ingrediente->listarIngrediente(), 'fornecedores'=>$fornecedor->listarFornecedor()]);
 });
+
+Route::post('/compra/adicionar_bd', function(Request $request) {
+    $compra = new Compra;
+
+    $compra->addCompra(
+        $request->input('ingrediente'),
+        $request->input('fornecedor'),
+        $request->input('quantidade')
+    );
+
+    return redirect()->route('compra');
+});
+
+
 
 Route::get('/compraEditar', function(){
     return view('welcome');
