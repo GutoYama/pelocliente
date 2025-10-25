@@ -9,8 +9,11 @@ Route::get('/', function () {
 });
 
 
+
+// FORNECEDORES
 Route::get('/fornecedor', function(){
-    $fornecedor = new Fornecedor; 
+    $fornecedor = new Fornecedor;
+    
     return view ('fornecedor', ['fornecedores'=>$fornecedor->listarFornecedor()]);
 });
 
