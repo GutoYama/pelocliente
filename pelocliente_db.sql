@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/10/2025 às 03:06
+-- Tempo de geração: 26/10/2025 às 21:34
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -77,7 +77,10 @@ INSERT INTO `composicao` (`cod_prato`, `cod_ingrediente`, `quantidade`) VALUES
 (4, 5, 0.02),
 (5, 10, 0.1),
 (5, 4, 0.05),
-(5, 5, 0.01);
+(5, 5, 0.01),
+(9, 2, 2),
+(9, 10, 1),
+(9, 5, 0.1);
 
 -- --------------------------------------------------------
 
@@ -162,6 +165,18 @@ INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_un
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `itens_pedido`
+--
+
+CREATE TABLE `itens_pedido` (
+  `cod_prato` int(11) NOT NULL,
+  `cod_pedido` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `pedido`
 --
 
@@ -204,7 +219,8 @@ INSERT INTO `prato` (`cod_prato`, `descricao`, `valor`) VALUES
 (2, 'Omelete Simples', 12.5),
 (3, 'Arroz com Ovo e Legumes', 13),
 (4, 'Sopa de Legumes', 11.5),
-(5, 'Sanduíche Natural', 15);
+(5, 'Sanduíche Natural', 15),
+(9, 'Prato de teste, VAI TUDO NELE', 50);
 
 -- --------------------------------------------------------
 
@@ -267,6 +283,13 @@ ALTER TABLE `ingrediente`
   ADD KEY `fk_ingrediente_unidade` (`cod_unidade`);
 
 --
+-- Índices de tabela `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  ADD KEY `fk_itens_pedido_pedido` (`cod_pedido`),
+  ADD KEY `fk_itens_pedido_prato` (`cod_prato`);
+
+--
 -- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
@@ -323,7 +346,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de tabela `prato`
 --
 ALTER TABLE `prato`
-  MODIFY `cod_prato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cod_prato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `unidade`
@@ -354,6 +377,13 @@ ALTER TABLE `compra`
 --
 ALTER TABLE `ingrediente`
   ADD CONSTRAINT `fk_ingrediente_unidade` FOREIGN KEY (`cod_unidade`) REFERENCES `unidade` (`cod_unidade`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  ADD CONSTRAINT `fk_itens_pedido_pedido` FOREIGN KEY (`cod_pedido`) REFERENCES `pedido` (`cod_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_itens_pedido_prato` FOREIGN KEY (`cod_prato`) REFERENCES `prato` (`cod_prato`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
