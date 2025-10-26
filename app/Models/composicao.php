@@ -36,7 +36,8 @@
                 INNER JOIN ingrediente i
                 ON c.cod_ingrediente = i.cod_ingrediente
                 INNER JOIN unidade u
-                ON i.cod_unidade = u.cod_unidade;
+                ON i.cod_unidade = u.cod_unidade
+                ORDER BY c.cod_prato;
                 '
             );
         }

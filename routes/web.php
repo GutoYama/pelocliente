@@ -174,7 +174,28 @@ Route::get('/ingredienteExcluir', function(){
 Route::get('/composicao', function(){
     $composicao = new Composicao;
     
-    return view ('composicao', ['composicoes'=>$composicao->listarComposicao()]);
+    $composicoes = $composicao->listarComposicao();
+    $composicoes_separadas = [];
+
+    for ($i = 0; $i < count($composicoes); $i++)
+    {      
+        $composicao_unica = [];
+
+        while ($composicoes[$i]->cod_prato == $composicoes[$i+1]->cod_prato)
+        {
+            $composicao_unica[] = $composicoes[$i];
+            $i++;
+
+            if ($i+1 == count($composicoes))
+                break;
+        }
+
+        $composicao_unica[] = $composicoes[$i];
+        
+        $composicoes_separadas[] = $composicao_unica;
+    }
+
+    return view ('composicao', ['composicoes'=>$composicoes_separadas]);
 });
 
 Route::get('/composicaoEditar', function(){
