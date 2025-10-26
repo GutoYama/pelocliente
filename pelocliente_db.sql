@@ -77,6 +77,7 @@ INSERT INTO `composicao` (`cod_prato`, `cod_ingrediente`, `quantidade`) VALUES
 (3, 2, 1),
 (3, 9, 0.2),
 (3, 5, 0.01),
+(3, 11, 1.5)
 
 -- Sopa de Legumes
 (4, 9, 0.3),
@@ -133,11 +134,13 @@ CREATE TABLE `fornecedor` (
 --
 
 INSERT INTO `fornecedor` (`cod_fornecedor`, `nome_fantasia`, `endereco`, `cnpj`, `telefone`) VALUES
-(1, 'Comercial São José', 'Rua das Flores, 120 - Centro', '12345678000199', '(11) 3456-7890'),
-(2, 'Distribuidora Oliveira', 'Av. Brasil, 980 - Jardim América', '98765432000155', '(21) 99876-5432'),
-(3, 'Tech Importadora', 'Rua da Tecnologia, 50 - Pinheiros', '45678912000144', '(31) 3456-1122'),
-(4, 'Alimentos Vitória', 'Rua dos Coqueiros, 220 - Bela Vista', '78912345000133', '(41) 3344-5566'),
-(5, 'Papelaria Central', 'Av. das Nações, 500 - Centro', '32165487000122', '(51) 2222-8888');
+(1, 'Grãos e Farinhas São José', 'Rua das Flores, 120 - Centro', '12345678000199', '(11) 3456-7890'),  -- Farinha de Trigo
+(2, 'Ovos Oliveira', 'Av. Brasil, 980 - Jardim América', '98765432000155', '(21) 99876-5432'),         -- Ovos
+(3, 'Massa & Companhia', 'Rua da Tecnologia, 50 - Pinheiros', '45678912000144', '(31) 3456-1122'),      -- Macarrão
+(4, 'Laticínios Vitória', 'Rua dos Coqueiros, 220 - Bela Vista', '78912345000133', '(41) 3344-5566'),  -- Mussarela, Manteiga
+(5, 'Hortifruti Central', 'Av. das Nações, 500 - Centro', '32165487000122', '(51) 2222-8888'),         -- Legumes Sortidos, Alho
+(6, 'Padaria e Pães Ponto Doce', 'Rua do Pão, 150 - Centro', '65432189000111', '(11) 3344-5566');     -- Pão de Forma
+
 
 -- --------------------------------------------------------
 
@@ -166,6 +169,7 @@ INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_un
 (8, 'Alho', 0.3, 1, 1.5),
 (9, 'Legumes Sortidos', 2, 1, 5.0),
 (10, 'Pão de Forma', 1, 1, 2.5);
+(11, 'Arroz', 1, 1, 3.0)
 
 
 -- --------------------------------------------------------
