@@ -7,7 +7,6 @@
             }
 
             nav{
-                border: 1px solid black;
                 width: 200px;
                 height: 100vh;
                 display: flex;
@@ -36,7 +35,7 @@
                 width: 130px;
                 height: 29px;
                 font-size: 24px;
-                background-image: linear-gradient(to left, #E14339, #E03155);
+                background-image: linear-gradient(to left, #E14339, #FFDE48);
             }
 
             .menulink{
@@ -80,7 +79,7 @@
             <h2 class="menuopcao"><a class="menulink">Itens Pedido</a></h2>
             <h2 class="menuopcao"><a class="menulink">Pedidos</a></h2>
 
-             @if($x == 9) <h2 class="menuopcaoselecionada"><a class="unidade" href="/prato">Pratos</a></h2>
+             @if($x == 9) <h2 class="menuopcaoselecionada"><a class="menulink" href="/prato">Pratos</a></h2>
                 @else <h2 class="menuopcao"><a class="menulink" href="/prato">Pratos</a></h2>
             @endif
         </nav>

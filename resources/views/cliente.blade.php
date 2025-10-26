@@ -5,6 +5,7 @@
         @include('partials.nav',['x' => 1])
         @include('partials.tabelas')
         @include('partials.img')
+        @include('partials.add')
         <table>
             <thead>
                 <tr>
