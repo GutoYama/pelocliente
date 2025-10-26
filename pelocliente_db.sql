@@ -64,12 +64,30 @@ CREATE TABLE `composicao` (
 --
 
 INSERT INTO `composicao` (`cod_prato`, `cod_ingrediente`, `quantidade`) VALUES
-(1, 1, 0.5),
-(1, 2, 3),
-(2, 1, 0.3),
+-- Macarrão ao Alho e Óleo
+(1, 7, 0.2),
+(1, 8, 0.02),
+(1, 5, 0.02),
+
+-- Omelete Simples
 (2, 2, 2),
-(3, 1, 0.4),
-(3, 2, 1);
+(2, 5, 0.01),
+
+-- Arroz com Ovo e Legumes
+(3, 2, 1),
+(3, 9, 0.2),
+(3, 5, 0.01),
+
+-- Sopa de Legumes
+(4, 9, 0.3),
+(4, 5, 0.02),
+
+-- Sanduíche Natural
+(5, 10, 0.1),
+(5, 4, 0.05),
+(5, 5, 0.01);
+
+
 
 -- --------------------------------------------------------
 
@@ -142,10 +160,13 @@ CREATE TABLE `ingrediente` (
 INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_unidade`, `valor_unit`) VALUES
 (1, 'Farinha de Trigo', 5, 1, 4.5),
 (2, 'Ovos', 12, 2, 0.8),
-(3, 'Açúcar', 3, 1, 3.2),
 (4, 'Mussarela', 2, 3, 4.0),
 (5, 'Manteiga', 1, 1, 7.5),
-(6, 'Fermento em Pó', 0.5, 1, 2.0);
+(7, 'Macarrão', 2, 1, 3.0),
+(8, 'Alho', 0.3, 1, 1.5),
+(9, 'Legumes Sortidos', 2, 1, 5.0),
+(10, 'Pão de Forma', 1, 1, 2.5);
+
 
 -- --------------------------------------------------------
 
@@ -211,14 +232,12 @@ CREATE TABLE `prato` (
 --
 
 INSERT INTO `prato` (`cod_prato`, `descricao`, `valor`) VALUES
-(1, 'Arroz com Frango', 18.5),
-(2, 'Feijoada Completa', 25),
-(3, 'Lasanha de Carne', 22.75),
-(4, 'Salada Caesar', 15),
-(5, 'Bife à Parmegiana', 27.5),
-(6, 'Bolo Simples', 15),
-(7, 'Panqueca', 12),
-(8, 'Massa de Pastel', 10);
+(1, 'Macarrão ao Alho e Óleo', 14.0),
+(2, 'Omelete Simples', 12.5),
+(3, 'Arroz com Ovo e Legumes', 13.0),
+(4, 'Sopa de Legumes', 11.5),
+(5, 'Sanduíche Natural', 15.0);
+
 
 -- --------------------------------------------------------
 
