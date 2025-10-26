@@ -43,7 +43,7 @@
         <footer>
             <a class = "cadastrar" href = {{ $link }}>
             <img src = {{ $icone }} alt="">
-            Cadastrar Cliente
+            Cadastrar {{ $aba }}
             </a>
         </footer>    
     </body>

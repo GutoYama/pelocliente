@@ -4,7 +4,7 @@
         @include('partials.nav', ['x' => 4])
         @include('partials.tabelas')
         @include('partials.img')
-        @include('partials.add', ['link' => '/fornecedor/adicionar', 'icone' => 'https://cdn-icons-png.flaticon.com/128/54/54414.png'])
+        @include('partials.add', ['link' => '/fornecedor/adicionar', 'icone' => 'https://cdn-icons-png.flaticon.com/128/54/54414.png', 'aba' => 'Fornecedor'])
         <table>
             <thead>
                 <tr>
