@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/10/2025 às 19:14
+-- Tempo de geração: 26/10/2025 às 03:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -64,31 +64,20 @@ CREATE TABLE `composicao` (
 --
 
 INSERT INTO `composicao` (`cod_prato`, `cod_ingrediente`, `quantidade`) VALUES
--- Macarrão ao Alho e Óleo
 (1, 7, 0.2),
 (1, 8, 0.02),
 (1, 5, 0.02),
-
--- Omelete Simples
 (2, 2, 2),
 (2, 5, 0.01),
-
--- Arroz com Ovo e Legumes
 (3, 2, 1),
 (3, 9, 0.2),
 (3, 5, 0.01),
-(3, 11, 1.5)
-
--- Sopa de Legumes
+(3, 11, 1.5),
 (4, 9, 0.3),
 (4, 5, 0.02),
-
--- Sanduíche Natural
 (5, 10, 0.1),
 (5, 4, 0.05),
 (5, 5, 0.01);
-
-
 
 -- --------------------------------------------------------
 
@@ -134,13 +123,12 @@ CREATE TABLE `fornecedor` (
 --
 
 INSERT INTO `fornecedor` (`cod_fornecedor`, `nome_fantasia`, `endereco`, `cnpj`, `telefone`) VALUES
-(1, 'Grãos e Farinhas São José', 'Rua das Flores, 120 - Centro', '12345678000199', '(11) 3456-7890'),  -- Farinha de Trigo
-(2, 'Ovos Oliveira', 'Av. Brasil, 980 - Jardim América', '98765432000155', '(21) 99876-5432'),         -- Ovos
-(3, 'Massa & Companhia', 'Rua da Tecnologia, 50 - Pinheiros', '45678912000144', '(31) 3456-1122'),      -- Macarrão
-(4, 'Laticínios Vitória', 'Rua dos Coqueiros, 220 - Bela Vista', '78912345000133', '(41) 3344-5566'),  -- Mussarela, Manteiga
-(5, 'Hortifruti Central', 'Av. das Nações, 500 - Centro', '32165487000122', '(51) 2222-8888'),         -- Legumes Sortidos, Alho
-(6, 'Padaria e Pães Ponto Doce', 'Rua do Pão, 150 - Centro', '65432189000111', '(11) 3344-5566');     -- Pão de Forma
-
+(1, 'Grãos e Farinhas São José', 'Rua das Flores, 120 - Centro', '12345678000199', '(11) 3456-7890'),
+(2, 'Ovos Oliveira', 'Av. Brasil, 980 - Jardim América', '98765432000155', '(21) 99876-5432'),
+(3, 'Massa & Companhia', 'Rua da Tecnologia, 50 - Pinheiros', '45678912000144', '(31) 3456-1122'),
+(4, 'Laticínios Vitória', 'Rua dos Coqueiros, 220 - Bela Vista', '78912345000133', '(41) 3344-5566'),
+(5, 'Hortifruti Central', 'Av. das Nações, 500 - Centro', '32165487000122', '(51) 2222-8888'),
+(6, 'Padaria e Pães Ponto Doce', 'Rua do Pão, 150 - Centro', '65432189000111', '(11) 3344-5566');
 
 -- --------------------------------------------------------
 
@@ -163,39 +151,14 @@ CREATE TABLE `ingrediente` (
 INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_unidade`, `valor_unit`) VALUES
 (1, 'Farinha de Trigo', 5, 1, 4.5),
 (2, 'Ovos', 12, 2, 0.8),
-(4, 'Mussarela', 2, 3, 4.0),
+(4, 'Mussarela', 2, 3, 4),
 (5, 'Manteiga', 1, 1, 7.5),
-(7, 'Macarrão', 2, 1, 3.0),
+(7, 'Macarrão', 2, 1, 3),
 (8, 'Alho', 0.3, 1, 1.5),
-(9, 'Legumes Sortidos', 2, 1, 5.0),
-(10, 'Pão de Forma', 1, 1, 2.5);
-(11, 'Arroz', 1, 1, 3.0)
+(9, 'Legumes Sortidos', 2, 1, 5),
+(10, 'Pão de Forma', 1, 1, 2.5),
+(11, 'Arroz', 1, 1, 3);
 
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `itens_pedido`
---
-
-CREATE TABLE `itens_pedido` (
-  `cod_prato` int(11) NOT NULL,
-  `cod_pedido` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para tabela 'pedido'
---
-  INSERT INTO `itens_pedido` (`cod_prato`, `cod_pedido`, `quantidade`) VALUES
-  (1, 1, 2),  -- Pedido 1: 2 unidades do prato 1
-  (3, 1, 1),  -- Pedido 1: 1 unidade do prato 3
-  (2, 2, 3),  -- Pedido 2: 3 unidades do prato 2
-  (4, 2, 1),  -- Pedido 2: 1 unidade do prato 4
-  (1, 3, 1),  -- Pedido 3: 1 unidade do prato 1
-  (5, 3, 2),  -- Pedido 3: 2 unidades do prato 5
-  (2, 4, 4),  -- Pedido 4: 4 unidades do prato 2
-  (6, 4, 1);  -- Pedido 4: 1 unidade do prato 6
 -- --------------------------------------------------------
 
 --
@@ -211,13 +174,14 @@ CREATE TABLE `pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para tabela 'pedido'
+-- Despejando dados para a tabela `pedido`
 --
+
 INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `datahora`) VALUES
-(1, 101, 75.50, 'Rua das Flores, 123 - Centro', '2025-10-20 14:35:00'),
-(2, 102, 120.00, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00'),
+(1, 101, 75.5, 'Rua das Flores, 123 - Centro', '2025-10-20 14:35:00'),
+(2, 102, 120, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00'),
 (3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00'),
-(4, 104, 230.90, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00');
+(4, 104, 230.9, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00');
 
 -- --------------------------------------------------------
 
@@ -236,12 +200,11 @@ CREATE TABLE `prato` (
 --
 
 INSERT INTO `prato` (`cod_prato`, `descricao`, `valor`) VALUES
-(1, 'Macarrão ao Alho e Óleo', 14.0),
+(1, 'Macarrão ao Alho e Óleo', 14),
 (2, 'Omelete Simples', 12.5),
-(3, 'Arroz com Ovo e Legumes', 13.0),
+(3, 'Arroz com Ovo e Legumes', 13),
 (4, 'Sopa de Legumes', 11.5),
-(5, 'Sanduíche Natural', 15.0);
-
+(5, 'Sanduíche Natural', 15);
 
 -- --------------------------------------------------------
 
@@ -304,13 +267,6 @@ ALTER TABLE `ingrediente`
   ADD KEY `fk_ingrediente_unidade` (`cod_unidade`);
 
 --
--- Índices de tabela `itens_pedido`
---
-ALTER TABLE `itens_pedido`
-  ADD KEY `fk_itens_pedido_pedido` (`cod_pedido`),
-  ADD KEY `fk_itens_pedido_prato` (`cod_prato`);
-
---
 -- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
@@ -349,19 +305,19 @@ ALTER TABLE `compra`
 -- AUTO_INCREMENT de tabela `fornecedor`
 --
 ALTER TABLE `fornecedor`
-  MODIFY `cod_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `ingrediente`
 --
 ALTER TABLE `ingrediente`
-  MODIFY `cod_ingrediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cod_ingrediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `prato`
@@ -373,7 +329,7 @@ ALTER TABLE `prato`
 -- AUTO_INCREMENT de tabela `unidade`
 --
 ALTER TABLE `unidade`
-  MODIFY `cod_unidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cod_unidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas
@@ -398,19 +354,6 @@ ALTER TABLE `compra`
 --
 ALTER TABLE `ingrediente`
   ADD CONSTRAINT `fk_ingrediente_unidade` FOREIGN KEY (`cod_unidade`) REFERENCES `unidade` (`cod_unidade`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Restrições para tabelas `itens_pedido`
---
-ALTER TABLE `itens_pedido`
-  ADD CONSTRAINT `fk_itens_pedido_pedido` FOREIGN KEY (`cod_pedido`) REFERENCES `pedido` (`cod_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_itens_pedido_prato` FOREIGN KEY (`cod_prato`) REFERENCES `prato` (`cod_prato`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Restrições para tabelas `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `fk_pedido_cliente` FOREIGN KEY (`cod_cliente`) REFERENCES `cliente` (`cod_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
