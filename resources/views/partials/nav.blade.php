@@ -38,6 +38,11 @@
                 background-image: linear-gradient(to left, #E14339, #FFDE48);
             }
 
+            .menuopcaoselecionada > a{
+                color: black;
+
+            }
+
             .menulink{
                 text-decoration: none;
                 color: #E5DD8F;
