@@ -28,10 +28,10 @@
                                 <td>{{ $comp->descricao_ingrediente }}</td>
 
                                 <td>
-                                    <a href="{{ route('composicaoEditar', [$comp->cod_prato, $comp->cod_ingrediente]) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
+                                    <a href="{{ route('composicaoEditar', [$comp->cod_prato]) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('composicaoExcluir', [$comp->cod_prato, $comp->cod_ingrediente]) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
+                                    <a href="{{ route('composicaoExcluir', [$comp->cod_prato]) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
                                 </td>
                             </tr>
                         @endforeach
