@@ -138,6 +138,7 @@ Route::get('/ingrediente', function(){
 })->name('ingrediente');
 
 
+
 Route::get('/ingrediente/adicionar', function() {
     $unidade = new Unidade;
     
@@ -196,7 +197,36 @@ Route::get('/composicao', function(){
     }
 
     return view ('composicao', ['composicoes'=>$composicoes_separadas]);
+})->name('composicao');
+
+
+Route::get('/composicao/adicionar', function(){
+    $prato = new Prato;
+    $ingrediente = new Ingrediente;
+
+    return view('adicionarcomposicao', ['pratos'=>$prato->listarPrato(), 'ingredientes'=>$ingrediente->listarIngrediente()]); 
 });
+
+Route::post('/composicao/adicionar_bd', function(Request $request){
+    
+    $totalDeIngredientes = $request->input('totaldeingredientes');
+    $cod_prato = $request->input('prato');
+
+    $composicao = new Composicao;
+
+    for ($i = 1; $i <= $totalDeIngredientes; $i++)
+    {
+        $cod_ingrediente = $request->input('ingrediente' . $i);
+        $quantidade = $request->input('quantidadeingrediente' . $i);
+        
+        $composicao->addComposicao($cod_prato, $cod_ingrediente, $quantidade);
+    }
+
+    
+    return redirect()->route('composicao');
+});
+
+
 
 Route::get('/composicaoEditar', function(){
     return view('welcome');
