@@ -141,7 +141,11 @@ CREATE TABLE `ingrediente` (
 
 INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_unidade`, `valor_unit`) VALUES
 (1, 'Farinha de Trigo', 5, 1, 4.5),
-(2, 'Ovos', 12, 2, 0.8);
+(2, 'Ovos', 12, 2, 0.8),
+(3, 'Açúcar', 3, 1, 3.2),
+(4, 'Mussarela', 2, 3, 4.0),
+(5, 'Manteiga', 1, 1, 7.5),
+(6, 'Fermento em Pó', 0.5, 1, 2.0);
 
 -- --------------------------------------------------------
 
@@ -155,6 +159,18 @@ CREATE TABLE `itens_pedido` (
   `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para tabela 'pedido'
+--
+  INSERT INTO `itens_pedido` (`cod_prato`, `cod_pedido`, `quantidade`) VALUES
+  (1, 1, 2),  -- Pedido 1: 2 unidades do prato 1
+  (3, 1, 1),  -- Pedido 1: 1 unidade do prato 3
+  (2, 2, 3),  -- Pedido 2: 3 unidades do prato 2
+  (4, 2, 1),  -- Pedido 2: 1 unidade do prato 4
+  (1, 3, 1),  -- Pedido 3: 1 unidade do prato 1
+  (5, 3, 2),  -- Pedido 3: 2 unidades do prato 5
+  (2, 4, 4),  -- Pedido 4: 4 unidades do prato 2
+  (6, 4, 1);  -- Pedido 4: 1 unidade do prato 6
 -- --------------------------------------------------------
 
 --
@@ -168,6 +184,15 @@ CREATE TABLE `pedido` (
   `endereco` varchar(100) NOT NULL,
   `datahora` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para tabela 'pedido'
+--
+INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `datahora`) VALUES
+(1, 101, 75.50, 'Rua das Flores, 123 - Centro', '2025-10-20 14:35:00'),
+(2, 102, 120.00, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00'),
+(3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00'),
+(4, 104, 230.90, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00');
 
 -- --------------------------------------------------------
 
@@ -214,7 +239,8 @@ CREATE TABLE `unidade` (
 INSERT INTO `unidade` (`cod_unidade`, `descricao`, `sigla`) VALUES
 (1, 'Quilograma', 'Kg'),
 (2, 'Unidade', 'Un'),
-(3, 'Gramas', 'g');
+(3, 'Gramas', 'g'),
+(4, 'Litros', 'L');
 
 --
 -- Índices para tabelas despejadas
