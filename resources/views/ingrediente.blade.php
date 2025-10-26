@@ -4,6 +4,7 @@
         <table>
             @include('partials.nav', ['x' => 5])
             @include('partials.tabelas')
+        @include('partials.img')
             <thead>
                 <tr>
                     <th>Descrição</th>
@@ -24,10 +25,10 @@
                         <td>R$ {{ number_format($ingrediente->valor_unit, 2, ',', '.') }}</td>
 
                         <td>
-                            <a href="{{ route('ingredienteEditar', $ingrediente->cod_ingrediente) }}">Editar</a>
+                            <a href="{{ route('ingredienteEditar', $ingrediente->cod_ingrediente) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
                         </td>
                         <td>
-                            <a href="{{ route('ingredienteExcluir', $ingrediente->cod_ingrediente) }}">Excluir</a>
+                            <a href="{{ route('ingredienteExcluir', $ingrediente->cod_ingrediente) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
                         </td>
                     </tr>
                 @endforeach

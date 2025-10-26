@@ -3,6 +3,7 @@
     <body>
         @include('partials.nav', ['x' => 9])
         @include('partials.tabelas')
+        @include('partials.img')
         <table>
             <thead>
                 <tr>
@@ -19,10 +20,10 @@
                     <td>{{ $prato->valor }}</td>
 
                     <td>
-                        <a href="{{ route('pratoEditar', $prato->cod_prato) }}">Editar</a>
+                        <a href="{{ route('pratoEditar', $prato->cod_prato) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
                     </td>
                     <td>
-                        <a href="{{ route('pratoExcluir', $prato->cod_prato) }}">Excluir</a>
+                        <a href="{{ route('pratoExcluir', $prato->cod_prato) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
                     </td>
                 </tr>
             @endforeach

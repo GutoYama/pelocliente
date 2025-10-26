@@ -4,6 +4,7 @@
     <body>
         @include('partials.nav',['x' => 1])
         @include('partials.tabelas')
+        @include('partials.img')
         <table>
             <thead>
                 <tr>
@@ -26,10 +27,10 @@
                     <td>{{ $cliente->email }}</td>
 
                     <td>
-                        <a href="{{ route('clienteEditar', $cliente->cod_cliente) }}">Editar</a>
+                        <a href="{{ route('clienteEditar', $cliente->cod_cliente) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
                     </td>
                     <td>
-                        <a href="{{ route('clienteExcluir', $cliente->cod_cliente) }}">Excluir</a>
+                        <a href="{{ route('clienteExcluir', $cliente->cod_cliente) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
                     </td>
                 </tr>
             @endforeach

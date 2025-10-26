@@ -3,6 +3,7 @@
     <body>
         @include('partials.nav', ['x' => 3])
         @include('partials.tabelas')
+        @include('partials.img')
         <table>
             <thead>
                 <tr>
@@ -24,10 +25,10 @@
                         <td>{{ $compra->nome_fantasia }}</td>
 
                         <td>
-                            <a href="{{ route('compraEditar', $compra->cod_compra) }}">Editar</a>
+                            <a href="{{ route('compraEditar', $compra->cod_compra) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
                         </td>
                         <td>
-                            <a href="{{ route('compraExcluir', $compra->cod_compra) }}">Excluir</a>
+                            <a href="{{ route('compraExcluir', $compra->cod_compra) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
                         </td>
                     </tr>
                 @endforeach
