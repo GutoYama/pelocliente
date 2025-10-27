@@ -25,7 +25,10 @@
     
         public function selectIngrediente($cod_ingrediente){
             return DB::select(
-                'SELECT * FROM ingrediente WHERE cod_ingrediente=?',
+                'SELECT i.cod_ingrediente, i.descricao, i.quantidade, i.cod_unidade, u.sigla, i.valor_unit FROM ingrediente i 
+                INNER JOIN unidade u
+                ON i.cod_unidade = u.cod_unidade
+                WHERE cod_ingrediente=?',
                 [$cod_ingrediente]
             );
         }

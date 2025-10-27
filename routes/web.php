@@ -44,9 +44,28 @@ Route::post('/fornecedor/adicionar_bd', function(Request $request){
 });
 
 
-Route::get('/fornecedorEditar', function(){
-    return view('welcome');
+Route::get('/fornecedorEditar', function(Request $request){
+    $fornecedor = new Fornecedor;
+    $cod_fornecedor = (int)$request->query('id');
+
+    return view('editarfornecedor', ['fornecedor' => $fornecedor->selectFornecedor($cod_fornecedor)]);
+
 })->name('fornecedorEditar');
+
+Route::get('/fornecedorEditar_bd', function(Request $request){
+    $fornecedor = new Fornecedor;
+    
+    $fornecedor->updateFornecedor(
+        $request->query('cod_fornecedor'),
+        $request->query('nome_fantasia'),
+        $request->query('endereco'),
+        $request->query('cnpj'),
+        $request->query('telefone')
+    );
+
+    return redirect()->route('fornecedor');
+});
+
 
 Route::get('/fornecedorExcluir', function(){
     return view('welcome');
@@ -137,9 +156,26 @@ Route::post('/prato/adicionar_bd', function(Request $request) {
 
 
 
-Route::get('/pratoEditar', function(){
-    return view('welcome');
+Route::get('/pratoEditar', function(Request $request){
+    $prato = new Prato;
+    $cod_prato = (int)$request->query('id');
+
+    return view('editarprato', ['prato'=>$prato->selectPrato($cod_prato)]);
 })->name('pratoEditar');
+
+
+Route::get('/pratoEditar_bd', function(Request $request){
+    $prato = new Prato;
+
+    $prato->updatePrato(
+        $request->query('cod_prato'),
+        $request->query('descricao'),
+        $request->query('valor')
+    );
+
+    return redirect()->route('prato');
+});
+
 
 Route::get('/pratoExcluir', function(){
     return view('welcome');
@@ -178,9 +214,30 @@ Route::post('/ingrediente/adicionar_bd', function(Request $request) {
 
 
 
-Route::get('/ingredienteEditar', function(){
-    return view('welcome');
+Route::get('/ingredienteEditar', function(Request $request){
+    $ingrediente = new Ingrediente;
+    $cod_ingrediente = (int)$request->query('id');
+
+    $unidade = new Unidade;
+
+    return view('editaringrediente', ['ingrediente'=>$ingrediente->selectIngrediente($cod_ingrediente), 'unidades'=>$unidade->listarUnidade()]);
 })->name('ingredienteEditar');
+
+Route::get('/ingredienteEditar_bd', function(Request $request){
+     $ingrediente = new Ingrediente;
+
+    $ingrediente->updateIngrediente(
+        $request->query('cod_ingrediente'),
+        $request->query('descricao'),
+        $request->query('quantidade'),
+        $request->query('cod_unidade'),
+        $request->query('valor_unit')
+    );
+
+    return redirect()->route('ingrediente');
+});
+
+
 
 Route::get('/ingredienteExcluir', function(){
     return view('welcome');
@@ -287,9 +344,32 @@ Route::post('/compra/adicionar_bd', function(Request $request) {
 
 
 
-Route::get('/compraEditar', function(){
-    return view('welcome');
+Route::get('/compraEditar', function(Request $request){
+    $compra = new Compra;
+    $cod_compra = $request->query('id');
+
+    $ingrediente = new Ingrediente;
+    $fornecedor = new Fornecedor;
+
+    return view ('editarcompra', ['compra'=>$compra->selectCompra($cod_compra), 
+        'ingredientes'=>$ingrediente->listarIngrediente(),
+         'fornecedores'=>$fornecedor->listarFornecedor()]);
 })->name('compraEditar');
+
+Route::get('/compraEditar_bd', function (Request $request) {
+    $compra = new Compra;
+
+    $compra->updateCompra(
+        $request->query('cod_compra'),
+        $request->query('cod_ingrediente'),
+        $request->query('cod_fornecedor'),
+        $request->query('quantidade')
+    );
+
+    return redirect()->route('compra');
+});
+
+
 
 Route::get('/compraExcluir', function(){
     return view('welcome');
@@ -323,9 +403,26 @@ Route::post('/unidade/adicionar_bd', function(Request $request) {
 
 
 
-Route::get('/unidadeEditar', function(){
-    return view('welcome');
+Route::get('/unidadeEditar', function(Request $request){
+    $unidade = new Unidade;
+    $cod_unidade = (int)$request->query('id');
+
+    return view('editarunidade', ['unidade'=>$unidade->selectUnidade($cod_unidade)]);
 })->name('unidadeEditar');
+
+Route::get('/unidadeEditar_bd', function(Request $request){
+    $unidade = new Unidade;
+
+    $unidade->updateUnidade(
+        $request->query('cod_unidade'),
+        $request->query('descricao'),
+        $request->query('sigla')
+    );
+
+    return redirect()->route('unidade');
+})->name('unidadeEditar');
+
+
 
 Route::get('/unidadeExcluir', function(){
     return view('welcome');

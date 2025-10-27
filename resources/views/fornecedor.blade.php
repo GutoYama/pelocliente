@@ -24,8 +24,8 @@
                     <td>{{$fornecedor->cnpj}}</td>
                     <td>{{$fornecedor->telefone}}</td>
                     
-                    <td> <a href="{{ route('fornecedorEditar', $fornecedor->cod_fornecedor) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a> </td>
-                    <td> <a href="{{ route('fornecedorExcluir', $fornecedor->cod_fornecedor) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a> </td>
+                    <td> <a href="{{ route('fornecedorEditar', ['id'=>$fornecedor->cod_fornecedor]) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a> </td>
+                    <td> <a href="{{ route('fornecedorExcluir', ['id'=>$fornecedor->cod_fornecedor]) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a> </td>
                 </tr>
             @endforeach
 

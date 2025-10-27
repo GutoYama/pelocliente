@@ -22,10 +22,10 @@
                         <td>{{ $unidade->sigla }}</td>
 
                         <td>
-                            <a href="{{ route('unidadeEditar', $unidade->cod_unidade) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
+                            <a href="{{ route('unidadeEditar', ['id'=>$unidade->cod_unidade]) }}"><img src="https://cdn-icons-png.flaticon.com/128/2951/2951128.png" alt=""></a>
                         </td>
                         <td>
-                            <a href="{{ route('unidadeExcluir', $unidade->cod_unidade) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
+                            <a href="{{ route('unidadeExcluir', ['id'=>$unidade->cod_unidade]) }}"><img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" alt=""></a>
                         </td>
                     </tr>
                 @endforeach
