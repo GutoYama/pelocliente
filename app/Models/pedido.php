@@ -1,5 +1,6 @@
 <?php
     namespace App\Models;
+    use Illuminate\Support\Facades\DB;
 
     final class Pedido {
         public $cod_pedido;
@@ -13,6 +14,8 @@
                 'INSERT INTO pedido (cod_cliente, valor_total, endereco, datahora) VALUES (?, ?, ?, ?)',
                 [$cod_cliente, $valor_total, $endereco, $datahora]
             );
+
+            return DB::getPdo()->lastInsertId();
         }
     
         public function updatePedido($cod_pedido, $cod_cliente, $valor_total, $endereco, $datahora){
