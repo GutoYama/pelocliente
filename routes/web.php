@@ -471,5 +471,10 @@ Route::get('/pedido/adicionar', function(){
     $cliente = new Cliente;
     $prato = new Prato;
 
-    return view('adicionarpedido', ['clientes'=>$cliente->listarCliente(), 'pratos'=>listarPrato()]);
+    return view('adicionarpedido', ['clientes'=>$cliente->listarCliente(), 'pratos'=>$prato->listarPrato()]);
+});
+
+
+Route::post('/pedido/adicionar_bd', function(Request $request){
+    dd($request->all());
 });
