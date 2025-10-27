@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <body>
         @include('partials.nav', ['x'=>0])
 
@@ -13,6 +14,10 @@
                     <option value='{{$prato->cod_prato}}'>{{$prato->descricao}}</option>
                 @endforeach
             </select>
+
+            <div id='ingredientes_do_prato'>
+            
+            </div>
 
             <button type='button' onclick='adicionarComposicao()'>Adicionar Composicao</button>
 
@@ -36,9 +41,44 @@
     <script>
             var contadorDeComposicoes = 1;
             var ingredientes = @json($ingredientes);
-
             
+            function adicionarIngrediente()
+            {
 
+            }
+
+            function alterarIngredientesListados(event)
+            {
+                if (event.target === undefined)
+                    var cod_prato = 1;
+                else
+                    var cod_prato = event.target.value;
+
+                $.ajax({
+                    url: '/composicao/listar_composicoes',
+                    type: 'GET',
+                    data: {id: cod_prato},
+                    success: function(resposta){
+                        
+                        var composicoesListadas = document.getElementById('ingredientes_do_prato');
+                        composicoesListadas.innerHTML = "";
+
+                        for(var i = 0; i < resposta.composicoes.length; i++)
+                        {
+                            var novoIngrediente = document.createElement('div');
+                            novoIngrediente.id = 'novo_ingrediente';
+                            
+                            novoIngrediente.innerHTML = "<p>" + 
+                                resposta.composicoes[i].descricao_ingrediente + " " + 
+                                resposta.composicoes[i].quantidade + 
+                                resposta.composicoes[i].sigla + 
+                                "</p>";
+
+                            composicoesListadas.appendChild(novoIngrediente);
+                        }
+                    }
+                });
+            }
 
             function alterarUnidade(event)
             {
@@ -69,7 +109,9 @@
             composicaoOriginal.addEventListener('change', alterarUnidade);
             alterarUnidade({currentTarget: composicaoOriginal});
 
-
+            var listaDeIngredientes = document.getElementById('prato');
+            listaDeIngredientes.addEventListener('change', alterarIngredientesListados);
+            alterarIngredientesListados({ currentTarget: listaDeIngredientes });
 
             function adicionarComposicao()
             {

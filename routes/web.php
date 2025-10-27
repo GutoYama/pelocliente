@@ -275,6 +275,19 @@ Route::get('/composicao', function(){
 })->name('composicao');
 
 
+
+Route::get('/composicao/listar_composicoes', function(Request $request){
+    $composicao = new Composicao;
+    $cod_prato = (int)$request->query('id');
+
+    $composicoes = $composicao->listarComposicaoPorPrato($cod_prato);
+
+    return response()->json([
+        'composicoes' => $composicoes
+    ]);
+});
+
+
 Route::get('/composicao/adicionar', function(){
     $prato = new Prato;
     $ingrediente = new Ingrediente;
@@ -303,9 +316,32 @@ Route::post('/composicao/adicionar_bd', function(Request $request){
 
 
 
-Route::get('/composicaoEditar', function(){
-    return view('welcome');
+Route::get('/composicaoEditar', function(Request $request){
+    $composicao = new Composicao;
+    $cod_prato = (int)$request->query('id');
+
+    $ingrediente = new Ingrediente;
+    
+    return view('editarcomposicao', ['composicoes'=>$composicao->listarComposicaoPorPrato($cod_prato), 'ingredientes'=>$ingrediente->listarIngrediente()]);
 })->name('composicaoEditar');
+
+Route::post('/composicaoEditar_bd', function(Request $request){
+    $composicao = new Composicao;
+    $cod_prato = (int)$request->input('cod_prato');
+
+    $numIngredientes = count($request['cod_ingrediente']);
+
+    //dd($request->all());
+
+    for ($i = 0; $i < $numIngredientes; $i++)
+    {
+        $composicao->updateComposicao($cod_prato, (int)$request['cod_ingrediente'][$i], (float)$request['quantidade'][$i]);
+    }
+    
+    return redirect()->route('composicao');
+});
+
+
 
 Route::get('/composicaoExcluir', function(){
     return view('welcome');
