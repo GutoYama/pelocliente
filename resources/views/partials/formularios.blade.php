@@ -44,6 +44,11 @@
         }
 
         .adicionarComposicao{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             transition: all 1s;
         }
 
@@ -64,6 +69,11 @@
             border: 1px solid black;
             background-color: #FFC823;
             cursor: pointer;
+        }
+
+        .adicionar{
+            width: 10px;
+            height: calc(width);
         }
     </style>
 </head>

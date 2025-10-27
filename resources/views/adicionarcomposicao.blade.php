@@ -21,8 +21,6 @@
             
             </div>
 
-            <button class="adicionarComposicao" type='button' onclick='adicionarComposicao()'>Adicionar Composicao</button>
-
             <label for="">Ingredientes</label>
             <div id='composicao1'>
                 <select id='ingrediente1' name='ingrediente1'>
@@ -38,6 +36,10 @@
 
             <input type='hidden' id='totaldeingredientes' name='totaldeingredientes' value=1>
 
+            <button class="adicionarComposicao" type='button' onclick='adicionarComposicao()'>
+                <img class="adicionar" src="https://cdn-icons-png.flaticon.com/128/54/54414.png" alt="">
+                Adicionar Composicao
+            </button>
             <center><input class="enviar" type='submit' value='evmia'></center>
         </form>
     </body>
