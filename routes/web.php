@@ -463,3 +463,13 @@ Route::get('/unidadeEditar_bd', function(Request $request){
 Route::get('/unidadeExcluir', function(){
     return view('welcome');
 })->name('unidadeExcluir');
+
+// ====================================================================================
+
+// PEDIDOS
+Route::get('/pedido/adicionar', function(){
+    $cliente = new Cliente;
+    $prato = new Prato;
+
+    return view('adicionarpedido', ['clientes'=>$cliente->listarCliente(), 'pratos'=>listarPrato()]);
+});
