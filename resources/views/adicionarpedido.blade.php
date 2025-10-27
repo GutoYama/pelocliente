@@ -2,7 +2,6 @@
 <html>
     <body>
         @include('partials.nav', ['x'=>0])
-        <form action="/pedido/adicionar_bd" method="POST">
             @csrf
             
             <label>Cliente</label>
