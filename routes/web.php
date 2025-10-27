@@ -79,13 +79,31 @@ Route::post('/cliente/adicionar_bd', function(Request $request) {
     );
 
     return redirect()->route('cliente');
-});
+}); 
 
 
 
-Route::get('/clienteEditar', function(){
-    return view('welcome');
+Route::get('/clienteEditar', function(Request $request){
+    $cliente = new Cliente;
+    $cod_cliente = (int)$request->query('id');
+
+    return view('editarcliente', ['cliente'=>$cliente->selectCliente($cod_cliente)]);
 })->name('clienteEditar');
+
+Route::get('/clienteEditar_bd', function (Request $request){
+    $cliente = new Cliente;
+    
+    $cliente->updateCliente(
+        $request->query('cod_cliente'), 
+        $request->query('nome'),
+        $request->query('cpf'),
+        $request->query('endereco'),
+        $request->query('telefone'),
+        $request->query('email')
+    );
+
+    return redirect()->route('cliente');
+});
 
 Route::get('/clienteExcluir', function(){
     return view('welcome');
