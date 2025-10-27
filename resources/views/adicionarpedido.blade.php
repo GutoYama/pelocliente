@@ -2,6 +2,7 @@
 <html>
     <body>
         @include('partials.nav', ['x'=>0])
+        @include('partials.formularios')
         <form action="/fornecedor/adicionar_bd" method="POST">
             @csrf
             <label>Cliente</label>
