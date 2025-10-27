@@ -33,7 +33,7 @@
             padding-left: 15px;
         }
 
-        input{
+        input, select, .adicionarComposicao{
             height: 25px;
             font-size: 20px;
 
@@ -43,8 +43,16 @@
             padding-left: 10px;
         }
 
+        .adicionarComposicao{
+            transition: all 1s;
+        }
+
         input:focus{
             background-image: linear-gradient(to left, #FFA626, #FF9633);
+        }
+
+        #quantidadeingrediente1{
+            width: 100px;
         }
 
         .enviar{
@@ -52,7 +60,7 @@
             transition: all 0.5s;
         }
 
-        .enviar:hover{
+        .enviar:hover, .adicionarComposicao:hover{
             border: 1px solid black;
             background-color: #FFC823;
             cursor: pointer;

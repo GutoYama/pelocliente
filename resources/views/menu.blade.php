@@ -87,7 +87,7 @@
             </div>
 
             <div class="yamauti">
-                <img src="" alt="">
+                <img src="Gustavo.jpeg" alt="">
                 <div class="info">
                     <h1>Nome: Gustavo Noda Yamauti</h1>
                     <h1>RA: 0379/24</h1>
