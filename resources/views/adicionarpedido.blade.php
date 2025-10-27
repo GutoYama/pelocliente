@@ -2,7 +2,8 @@
 <html>
     <body>
         @include('partials.nav', ['x'=>0])
-            @csrf
+        <form action='pedido/adicionar_bd' method='POST'>    
+        @csrf
             
             <label>Cliente</label>
             <select id='opcoesDeClientes' name='cliente'>
