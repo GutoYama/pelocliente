@@ -9,8 +9,9 @@
 
         <form action='/composicao/adicionar_bd' method='POST'>
             @csrf
-            
+            <label for="">Pratos</label>
             <select id='prato' name='prato'>
+                    <option value="">Selecionar Prato</option>  
                 @foreach($pratos as $prato)
                     <option value='{{$prato->cod_prato}}'>{{$prato->descricao}}</option>
                 @endforeach
@@ -20,10 +21,12 @@
             
             </div>
 
-            <button type='button' onclick='adicionarComposicao()'>Adicionar Composicao</button>
+            <button class="adicionarComposicao" type='button' onclick='adicionarComposicao()'>Adicionar Composicao</button>
 
+            <label for="">Ingredientes</label>
             <div id='composicao1'>
                 <select id='ingrediente1' name='ingrediente1'>
+                    <option value="">Selecionar Ingrediente</option>
                 @foreach($ingredientes as $ingrediente)
                     <option value='{{$ingrediente->cod_ingrediente}}'>{{$ingrediente->descricao}}</option>
                 @endforeach
@@ -35,7 +38,7 @@
 
             <input type='hidden' id='totaldeingredientes' name='totaldeingredientes' value=1>
 
-            <input type='submit' value='evmia'>
+            <center><input class="enviar" type='submit' value='evmia'></center>
         </form>
     </body>
 
@@ -66,14 +69,14 @@
 
                         for(var i = 0; i < resposta.composicoes.length; i++)
                         {
-                            var novoIngrediente = document.createElement('div');
+                            var novoIngrediente = document.createElement('ul');
                             novoIngrediente.id = 'novo_ingrediente';
                             
-                            novoIngrediente.innerHTML = "<p>" + 
+                            novoIngrediente.innerHTML = "<li>" + 
                                 resposta.composicoes[i].descricao_ingrediente + " " + 
                                 resposta.composicoes[i].quantidade + 
                                 resposta.composicoes[i].sigla + 
-                                "</p>";
+                                "</li>";
 
                             composicoesListadas.appendChild(novoIngrediente);
                         }
@@ -108,11 +111,11 @@
 
             var composicaoOriginal = document.getElementById('composicao1').querySelector('select');
             composicaoOriginal.addEventListener('change', alterarUnidade);
-            alterarUnidade({currentTarget: composicaoOriginal});
+            //alterarUnidade({currentTarget: composicaoOriginal});
 
             var listaDeIngredientes = document.getElementById('prato');
             listaDeIngredientes.addEventListener('change', alterarIngredientesListados);
-            alterarIngredientesListados({ currentTarget: listaDeIngredientes });
+            //alterarIngredientesListados({ currentTarget: listaDeIngredientes });
 
             function adicionarComposicao()
             {
