@@ -5,7 +5,8 @@
         @include('partials.nav',['x' => 1])
         @include('partials.tabelas')
         @include('partials.img')
-        @include('partials.add')
+        @include('partials.add', ['link' => '/cliente/adicionar', 'icone' => 'https://cdn-icons-png.flaticon.com/128/3394/3394625.png', 'aba' => 'Cliente'])
+
         <table>
             <thead>
                 <tr>

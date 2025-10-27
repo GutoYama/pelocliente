@@ -5,6 +5,7 @@
         @include('partials.tabelas')
         @include('partials.img')
         @include('partials.pratos')
+        @include('partials.add', ['link' => '/composicao/adicionar', 'icone' => 'https://cdn-icons-png.flaticon.com/128/54/54414.png', 'aba' => 'Composicao'])
         
         <div class="listapratos">
             @foreach($composicoes as $composicao)

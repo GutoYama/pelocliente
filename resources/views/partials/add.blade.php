@@ -3,7 +3,7 @@
         <style>
             footer{
                 width: calc(100% - 250px);
-                height: 50px;
+                height: 100px;
                 
                 position: absolute;
                 bottom: 0;
@@ -16,15 +16,23 @@
                 justify-content: flex-end;
                 align-items: center;
             }
-            button{
+            .cadastrar{
                 background-color: #FF8A26;
                 
                 border: 1px solid orange;
                 border-radius: 7px;
                 
-                height: 35px;
+                height: 50%;
 
-                margin-right: 10px;
+                margin-right: 30px;
+                padding: 5px;
+
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                
+                color: black;
+                text-decoration: none;
             }
             button:hover{
                 cursor: pointer;
@@ -33,7 +41,10 @@
     </head>
     <body>
         <footer>
-            <button>Adicionar Cliente</button>
+            <a class = "cadastrar" href = {{ $link }}>
+            <img src = {{ $icone }} alt="">
+            Cadastrar {{ $aba }}
+            </a>
         </footer>    
     </body>
 </html>
