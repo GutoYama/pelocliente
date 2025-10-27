@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x'=>0])
         <form action="/unidade/adicionar_bd" method="POST">
             @csrf
             <label>Descrição</label>

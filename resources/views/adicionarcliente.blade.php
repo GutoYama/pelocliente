@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x'=>0])
+        @include('partials.formularios')
         <form action="/cliente/adicionar_bd" method="POST">
             @csrf
             <label>Nome</label>
@@ -18,7 +20,7 @@
             <label>Email</label>
             <input name="email" type="email"></input>
 
-            <input type="submit"></input>
+            <center><input class="enviar" type="submit"></input></center>
         </form>
     </body>
 </html>

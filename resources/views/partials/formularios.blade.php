@@ -1,0 +1,62 @@
+<html>
+<head>
+    <style>
+        body{
+            display: flex;
+            flex-direction: row;
+            background-image: linear-gradient(190deg, #ebb644ff, #e9cc4bff);
+        }
+
+        form{
+            border-radius: 7px;
+
+            display: flex;
+            flex-direction: column;
+
+            width: 400px;
+            height: 500px;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform:translate(-50%, -50%);
+
+            padding: 20px;
+            gap: 20px;
+
+            background-color: #FFC823;
+        }
+
+        label{
+            font-size: 20px;
+
+            padding-left: 15px;
+        }
+
+        input{
+            height: 25px;
+            font-size: 20px;
+
+            border-radius: 20px;
+            border: none;
+
+            padding-left: 10px;
+        }
+
+        input:focus{
+            background-image: linear-gradient(to left, #FFA626, #FF9633);
+        }
+
+        .enviar{
+            width: 100px;
+            transition: all 0.5s;
+        }
+
+        .enviar:hover{
+            border: 1px solid black;
+            background-color: #FFC823;
+            cursor: pointer;
+        }
+    </style>
+</head>
+</html>

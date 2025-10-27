@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x'=>0])
         <form action="/fornecedor/adicionar_bd" method="POST">
             @csrf
             <label>Nome Fantasia</label>

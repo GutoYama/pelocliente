@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <body>        
+    <body>
+        @include('partials.nav', ['x'=>0])        
         <form action="/compra/adicionar_bd" method="POST">
             @csrf
 
