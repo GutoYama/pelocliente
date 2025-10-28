@@ -71,7 +71,10 @@
 
         <main>
             <img class="peloCliente" src="./PeloCliente.jpg" alt="">
-
+            <img class="pose1" src="GustavoPose1.webp" alt="">
+            <img class="pose2" src="GustavoPose2.webp" alt="">
+            <img class="pose3" src="GustavoPose3.webp" alt="">
+            <img class="pose4" src="GustavoPose4.webp" alt="">
         </main>
     </div>
     <footer>
