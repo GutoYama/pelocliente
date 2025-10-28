@@ -35,7 +35,7 @@
             <div id='itensDoPedido'>
             </div>
 
-            <p>Valor Total: R$ 0.0</p>
+            <p id='valorTotal'>Valor Total: R$ 0.0</p>
 
             <input type='submit' value='Finalizar Pedido'>
         </form>
@@ -73,13 +73,18 @@
             contadorDeItens++;
 
             var selectPrato = document.createElement('select');
+            selectPrato.addEventListener('change', calcularValorTotal);
             selectPrato.name = 'pratos[]';
+            selectPrato.id = 'prato';
+
             var labelPrato = document.createElement('label');
             labelPrato.innerText = "Prato ";
 
             var inputQuantidade = document.createElement('input');
             inputQuantidade.name = 'quantidades[]';
             inputQuantidade.type = 'number';
+            inputQuantidade.id = 'quantidade';
+            inputQuantidade.addEventListener('input', calcularValorTotal);
 
             var labelQuantidade = document.createElement('label');
             labelQuantidade.innerText = "Quantidade ";
@@ -87,6 +92,7 @@
             for (var i = 0; i < pratos.length; i++)
             {
                 var optionPrato = document.createElement('option');
+                optionPrato.dataset.valor_unitario = pratos[i].valor;
                 optionPrato.value = pratos[i].cod_prato;
                 optionPrato.innerText = pratos[i].descricao;
                 
@@ -101,7 +107,7 @@
             divItensDoPedido.appendChild(labelQuantidade);
             divItensDoPedido.appendChild(inputQuantidade);
 
-            divItensDoPèdido.appendChild('<br>');
+            divItensDoPedido.appendChild('<br>');
         }
 
         function alterarDadosCliente(event)
@@ -121,9 +127,32 @@
             }
         }
 
-        function alterarValorTotal()
+        function calcularValorTotal()
         {
+            var itensPedidoDiv = document.getElementById('itensDoPedido');
+            var itensPedido = itensPedidoDiv.children;
 
+            var valorTotal = 0;
+
+            for (var i = 0; i < itensPedido.length; i++)
+            {
+                if (itensPedido[i].id == 'prato')
+                {
+                    var valor_unitario = itensPedido[i].selectedOptions[0].dataset.valor_unitario;
+                    
+
+                    for (var j = i; j < itensPedido.length; j++)
+                    {
+                        if (itensPedido[j].id == 'quantidade')
+                        {
+                            valorTotal += valor_unitario * itensPedido[j].value;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            document.getElementById('valorTotal').innerText = 'Valor Total: R$ ' + valorTotal.toString();
         }
     </script>
 </html>
