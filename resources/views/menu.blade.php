@@ -68,8 +68,12 @@
     <div class="centro">
         @include('partials.nav', ['x'=>0])
         @include ('partials.menu')
+        @include('partials.falas')
 
         <main>
+            <p class="vazio" id="falaGustavoDois"></p>
+            <p class="vazio" id="falaGustavoTres"></p>
+
             <img class="peloCliente" src="./PeloCliente.jpg" alt="">
             <img class="pose1" src="GustavoPose1.webp" alt="">
             <img class="pose2" src="GustavoPose2.webp" alt="">
@@ -115,4 +119,45 @@
         </div>
     </footer>
 </body>
+    <script>
+        function falarGustavoDois(){
+            var elemento = document.getElementById('falaGustavoDois');
+            
+            setTimeout(function(){
+                elemento.className = "falaGustavoDois";
+                elemento.innerHTML = "VAI TRABALHAR DOUGLAS!!!";
+            }, 2000);
+
+            setTimeout(function(){
+                elemento.innerHTML = "";
+                elemento.className = "vazio";
+            }, 5000);
+
+            setTimeout(function(){
+                falarGustavoDois();
+            }, 8000);
+        }
+
+        //falarGustavoDois();
+
+        function falarGustavoTres(){
+            var elemento = document.getElementById('falaGustavoTres');
+
+            setTimeout(function(){
+                elemento.className = "falaGustavoTres";
+                elemento.innerHTML = "NUNCA VI UM DOUGLAS TÃO INCOMPETENTE!!!";
+            }, 1000);
+
+            setTimeout(function(){
+                elemento.innerHTML = "";
+                elemento.className = "vazio";
+            }, 4000);
+
+            setTimeout(function(){
+                falarGustavoTres();
+            }, 5000);
+        }
+
+        //falarGustavoTres();
+    </script>
 </html>

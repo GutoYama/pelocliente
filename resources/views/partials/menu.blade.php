@@ -18,18 +18,22 @@
 
             .pose1{
                 left: 10%;
+                filter:drop-shadow(5px 5px 2px red);
             }
             
             .pose2{
                 left: 23%;
+                filter:drop-shadow(5px 5px 2px red);
             }
 
             .pose3{
                 right: 15%;
+                filter:drop-shadow(5px 5px 2px red);
             }
 
             .pose4{
                 right: 0;
+                filter:drop-shadow(5px 5px 2px red);
             }
         </style>
     </head>
