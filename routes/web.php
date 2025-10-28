@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 use App\Models\Cliente;
 use App\Models\Fornecedor;
 use App\Models\Prato;
@@ -10,10 +12,12 @@ use App\Models\Ingrediente;
 use App\Models\Composicao;
 use App\Models\Compra;
 use App\Models\Unidade;
+use App\Models\Pedido;
+use App\Models\Itens_pedido;
 
 Route::get('/', function () {
     return view('menu');
-});
+})->name('menu');
 
 
 // ====================================================================================
@@ -476,5 +480,32 @@ Route::get('/pedido/adicionar', function(){
 
 
 Route::post('/pedido/adicionar_bd', function(Request $request){
-    dd($request->all());
+    $pedido = new Pedido;
+    $cod_cliente = (int)$request->input('cliente');
+
+    $cliente = new Cliente;
+    $endereco = "";
+
+    if ($cod_cliente == 0)
+    {
+        $endereco = $request->input('enderecoNaoCadastrado');
+    }
+    else
+    {
+        $endereco = $cliente->selectCliente($cod_cliente)[0]->endereco;
+    }
+
+    // Fiz uma modificação pra ele retornar o cod_pedido
+    $cod_pedido = $pedido->addPedido($cod_cliente, 0, $endereco, Carbon::now());
+
+    $itens_pedido = new Itens_pedido;
+
+    $totalDePratos = count($request['pratos']);
+
+    for ($i = 0; $i < $totalDePratos; $i++)
+    {
+        $itens_pedido->addItens_pedido($request['pratos'][$i], $cod_pedido, $request['quantidades'][$i]);
+    }
+
+    return redirect()->route('menu');
 });

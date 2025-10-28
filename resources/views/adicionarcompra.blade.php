@@ -23,10 +23,10 @@
             <label>Quantidade</label>
             <input id="quantidade" name="quantidade" type="number" value=0></input>
 
+           <p>Valor total da compra: </p> <div id="valor_total"></div>
+
             <input type="submit" value="Lançar Compra"></input>
         </form>
-
-        <p>Valor total da compra: </p> <div id="valor_total"></div>
     </body>
 
     <script>
@@ -34,7 +34,11 @@
             var valor_unitario = parseFloat(document.getElementById('ingrediente').selectedOptions[0].dataset.valor_unitario);
             var quantidade = parseFloat(document.getElementById('quantidade').value)
 
-            document.getElementById('valor_total').innerText = "R$ " + quantidade * valor_unitario;
+            if(isNaN(quantidade) || quantidade <= 0){
+                document.getElementById('valor_total').innerText = "R$ " + 0 * valor_unitario;
+            }else{
+                document.getElementById('valor_total').innerText = "R$ " + quantidade * valor_unitario;
+            }
         }
         
         calculaValorTotal();

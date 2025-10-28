@@ -2,29 +2,40 @@
 <html>
     <body>
         @include('partials.nav', ['x'=>0])
-        <form action='pedido/adicionar_bd' method='POST'>    
+        <form action='adicionar_bd' method='POST'>    
         @csrf
             
-            <label>Cliente</label>
-            <select id='opcoesDeClientes' name='cliente'>
-                <option></option>
-                
-                @foreach($clientes as $cliente)
-                    <option value='{{$cliente->cod_cliente}}'>{{$cliente->nome}}</option>
-                @endforeach
-            </select>
+            <button id='botaoCadastrado' type='button' onclick='modificarParaCliente(true)'>Pedido para cliente cadastrado</button>
+            <button id='botaoNaoCadastrado' type='button' onclick='modificarParaCliente(false)'>Pedido para Cliente não cadastrado</button>
 
-            <div id='dadosDoCliente'>
+            <div id='formularioClienteCadastrado'>
+                <label>Cliente</label>
+                <select id='opcoesDeClientes' name='cliente'>
+                    <option></option>
+                    
+                    @foreach($clientes as $cliente)
+                        <option value='{{$cliente->cod_cliente}}'>{{$cliente->nome}}</option>
+                    @endforeach
+                </select>
+
+                <div id='dadosDoCliente'>
+                    <label>Endereço </label>
+                    <div id='endereco'></div>
+                    <label>CPF </label>
+                    <div id='cpf'></div>
+                </div>
+            </div>
+            <div id='formularioClienteNaoCadastrado'>
                 <label>Endereço </label>
-                <div id='endereco'></div>
-                <label>CPF </label>
-                <div id='cpf'></div>
+                <input id='enderecoNaoCadastrado' name='enderecoNaoCadastrado'></input>
             </div>
 
             <button type='button' onclick='adicionarItem()'>Adicionar Item</button>
 
             <div id='itensDoPedido'>
             </div>
+
+            <p>Valor Total: R$ 0.0</p>
 
             <input type='submit' value='Finalizar Pedido'>
         </form>
@@ -38,6 +49,24 @@
         var pratos = @json($pratos);
 
         var contadorDeItens = 0;
+
+        document.getElementById('formularioClienteCadastrado').style.display = 'none';
+        document.getElementById('formularioClienteNaoCadastrado').style.display = 'none';
+
+        function modificarParaCliente(isCadastrado)
+        {
+            document.getElementById('botaoNaoCadastrado').remove();
+            document.getElementById('botaoCadastrado').remove();
+
+            if (isCadastrado)
+            {
+                document.getElementById('formularioClienteCadastrado').style.display = 'block';
+            }
+            else
+            {
+                document.getElementById('formularioClienteNaoCadastrado').style.display = 'block';
+            }
+        }
 
         function adicionarItem()
         {
@@ -90,6 +119,11 @@
                     cpfCliente.innerText = clientes[i].cpf;
                 }
             }
+        }
+
+        function alterarValorTotal()
+        {
+
         }
     </script>
 </html>
