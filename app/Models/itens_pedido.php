@@ -28,6 +28,16 @@
                 [$cod_prato, $cod_pedido]
             );
         }
+
+        public function listarItens_pedidoPorPedido($cod_pedido){
+            return DB::select(
+                'SELECT i.cod_prato, p.descricao, i.cod_pedido, i.quantidade FROM itens_pedido i
+                INNER JOIN prato p
+                ON i.cod_prato = p.cod_prato
+                WHERE cod_pedido=?', 
+                [$cod_pedido]
+            );
+        }
     
         public function deleteItens_pedido($cod_prato, $cod_pedido){
             DB::delete(

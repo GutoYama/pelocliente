@@ -25,6 +25,14 @@
                 [$cod_cliente, $valor_total, $endereco, $datahora, $cod_pedido]
             );
         }
+
+        public function listarPedido(){
+            return DB::select(
+                'SELECT p.cod_pedido, c.cod_cliente, c.nome, p.valor_total, p.endereco, p.datahora, p.entregue FROM pedido p
+                LEFT OUTER JOIN cliente c
+                ON p.cod_cliente = c.cod_cliente'
+            );
+        }
     
         public function selectPedido($cod_pedido){
             return DB::select(

@@ -471,6 +471,27 @@ Route::get('/unidadeExcluir', function(){
 // ====================================================================================
 
 // PEDIDOS
+Route::get('/pedido', function(){
+    $pedido = new Pedido;
+    $itens_pedido = new Itens_pedido;
+
+    $pedidos = $pedido->listarPedido();
+
+    $dadosPedido = [];
+
+    for ($i = 0; $i < count($pedidos); $i++)
+    {
+        $dadosPedido[] = ['dados_do_pedido'=>$pedidos[$i]];
+        $dadosPedido[$i]['itens_do_pedido'] = $itens_pedido->listarItens_pedidoPorPedido($pedidos[$i]->cod_pedido);
+    }
+
+    //dd($dadosPedido);
+    
+
+    return view('pedido', ['pedidos'=>$dadosPedido]);
+});
+
+
 Route::get('/pedido/adicionar', function(){
     $cliente = new Cliente;
     $prato = new Prato;
