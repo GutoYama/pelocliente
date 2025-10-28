@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/10/2025 às 23:09
+-- Tempo de geração: 28/10/2025 às 01:18
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -108,7 +108,7 @@ INSERT INTO `compra` (`cod_compra`, `cod_ingrediente`, `cod_fornecedor`, `quanti
 -- Acionadores `compra`
 --
 DELIMITER $$
-CREATE TRIGGER `up_ingr` AFTER INSERT ON `compra` FOR EACH ROW UPDATE ingredientes
+CREATE TRIGGER `up_ingr` AFTER INSERT ON `compra` FOR EACH ROW UPDATE ingrediente
 SET quantidade = quantidade + NEW.quantidade
 WHERE cod_ingrediente = NEW.cod_ingrediente
 $$
@@ -220,7 +220,7 @@ INSERT INTO `prato` (`cod_prato`, `descricao`, `valor`) VALUES
 -- Acionadores `prato`
 --
 DELIMITER $$
-CREATE TRIGGER `baixa_ingr` AFTER INSERT ON `prato` FOR EACH ROW UPDATE ingredientes i
+CREATE TRIGGER `baixa_ingr` AFTER INSERT ON `prato` FOR EACH ROW UPDATE ingrediente i
     JOIN prato pi ON i.cod_ingrediente = pi.cod_ingrediente
     SET i.quantidade = i.quantidade - pi.quantidade_utilizada
     WHERE pi.cod_prato = NEW.cod_prato
