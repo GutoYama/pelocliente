@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x' => 0])
+        @include('partials.formularios')
         <form action="/pratoEditar_bd" method="GET">
             @csrf
 
@@ -12,7 +14,7 @@
             <label>Valor</label>
             <input name="valor" type="number" step="0.01" value="{{$prato[0]->valor}}"></input>
 
-            <input type="submit" value="Salvar"></input>
+            <center><input class="enviar" type="submit" value="Salvar"></input></center>
         </form>
     </body>
 </html>

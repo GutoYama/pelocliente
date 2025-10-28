@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x' => 0])
+        @include('partials.formularios')
         <form action="/unidadeEditar_bd" method="GET">
             @csrf
 
@@ -12,7 +14,7 @@
             <label>Sigla</label>
             <input name="sigla" type="text" value="{{$unidade[0]->sigla}}"></input>
 
-            <input type="submit" value="Salvar"></input>
+            <center><input class="enviar" type="submit" value="Salvar"></input></center>
         </form>
     </body>
 </html>

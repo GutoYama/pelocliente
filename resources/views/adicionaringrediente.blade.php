@@ -13,6 +13,7 @@
 
             <label>Unidade Utilizada</label>
             <select name='unidade'>
+                <option value=""></option>
                 @foreach($unidades as $unidade)
                     <option value='{{$unidade->cod_unidade}}'>{{$unidade->descricao}}</option>
                 @endforeach
@@ -21,7 +22,7 @@
             <label>Valor Unitário</label>
             <input name="valor_unit" type="text"></input>
 
-            <input type="submit"></input>
+            <center><input class="enviar" type="submit"></input></center>
         </form>
     </body>
 </html>

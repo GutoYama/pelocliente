@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x' => 0])
+        @include('partials.formularios')
         <form action="/ingredienteEditar_bd" method="GET">
             @csrf
 
@@ -22,7 +24,7 @@
             <label>Valor Unitário</label>
             <input name="valor_unit" type="number" step="0.01" value="{{$ingrediente[0]->valor_unit}}"></input>
 
-            <input type="submit" value="Salvar"></input>
+            <center><input class="enviar" type="submit" value="Salvar"></input></center>
         </form>
     </body>
 

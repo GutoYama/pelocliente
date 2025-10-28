@@ -3,6 +3,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <body>
         @include('partials.nav', ['x'=>0])
+        @include('partials.formularios')
 
         
 
@@ -25,7 +26,7 @@
                 <p>{{$composicao->sigla}}</p>
             @endforeach
 
-            <input type='submit' value='salvar'>
+            <center><input class="enviar" type='submit' value='salvar'></center>
         </form>
     </body>
 

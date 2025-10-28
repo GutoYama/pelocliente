@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x' => 0])
+        @include('partials.formularios')
         <form action="/compraEditar_bd" method="GET">
             @csrf
 
@@ -23,7 +25,7 @@
             <label>Quantidade</label>
             <input name="quantidade" type="number" step="0.01" value="{{$compra[0]->quantidade}}"></input>
 
-            <input type="submit" value="Salvar"></input>
+            <center><input class="enviar" type="submit" value="Salvar"></input></center>
         </form>
     </body>
 

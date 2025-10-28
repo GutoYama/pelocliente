@@ -22,7 +22,7 @@
             </div>
 
             <label for="">Ingredientes</label>
-            <div id='composicao1'>
+            <div class="composicao" id='composicao1'>
                 <select id='ingrediente1' name='ingrediente1'>
                     <option value="">Selecionar Ingrediente</option>
                 @foreach($ingredientes as $ingrediente)
@@ -38,7 +38,7 @@
 
             <button class="adicionarComposicao" type='button' onclick='adicionarComposicao()'>
                 <img class="adicionar" src="https://cdn-icons-png.flaticon.com/128/54/54414.png" alt="">
-                Adicionar Composicao
+                Adicionar Ingrediente na Composicao
             </button>
             <center><input class="enviar" type='submit' value='evmia'></center>
         </form>

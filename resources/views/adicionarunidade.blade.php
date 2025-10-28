@@ -11,7 +11,7 @@
             <label>Sigla</label>
             <input name="sigla" type="text"></input>
 
-            <input type="submit"></input>
+            <center><input class="enviar" type="submit"></input></center>
         </form>
     </body>
 </html>

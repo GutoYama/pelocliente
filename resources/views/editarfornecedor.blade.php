@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <body>
+        @include('partials.nav', ['x' => 0])
+        @include('partials.formularios')
         <form action="/fornecedorEditar_bd" method="GET">
             @csrf
 
@@ -18,7 +20,7 @@
             <label>Telefone</label>
             <input name="telefone" type="text" value="{{$fornecedor[0]->telefone}}"></input>
 
-            <input type="submit" value="Salvar"></input>
+            <center><input class="enviar" type="submit" value="Salvar"></input></center>
         </form>
     </body>
 </html>

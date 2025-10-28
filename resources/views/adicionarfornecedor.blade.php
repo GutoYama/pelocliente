@@ -13,7 +13,7 @@
             <input name="cnpj" type="text"></input>
             <label>Telefone</label>
             <input name="telefone" type="text"></input>
-            <input type="submit"></input>
+            <center><input class="enviar" type="submit"></input></center>
         </form>
     </body>
 </html>

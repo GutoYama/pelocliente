@@ -82,6 +82,32 @@
             width: 10px;
             height: calc(width);
         }
+
+        .enviarcompra{
+            transition: all 1s ease;
+        }
+
+        .enviarcompra:hover{
+            border: 1px solid black;
+            background-color: #FFC823;
+            cursor: pointer;
+        }
+
+        .composicao{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .composicao input{
+            width: 100px;
+        }
+
+        .composicao p{
+            position: relative;
+            left: -10%;
+            top: -23%;
+        }
     </style>
 </head>
 </html>

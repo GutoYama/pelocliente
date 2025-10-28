@@ -11,7 +11,7 @@
             <label>Valor</label>
             <input name="valor" type="text"></input>
 
-            <input type="submit"></input>
+            <center><input class="enviar" type="submit"></input></center>
         </form>
     </body>
 </html>

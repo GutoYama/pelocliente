@@ -28,7 +28,7 @@
                 <div id="valor_total"></div>
            </div>
 
-            <input type="submit" value="Lançar Compra"></input>
+            <center><input class="enviarcompra" type="submit" value="Lançar Compra"></input></center>
         </form>
     </body>
 

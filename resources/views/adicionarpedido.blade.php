@@ -37,7 +37,7 @@
 
             <p id='valorTotal'>Valor Total: R$ 0.0</p>
 
-            <input type='submit' value='Finalizar Pedido'>
+            <center><input class="enviar" type='submit' value='Finalizar Pedido'></center>
         </form>
     </body>
 
