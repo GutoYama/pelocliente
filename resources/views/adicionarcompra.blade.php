@@ -23,7 +23,10 @@
             <label>Quantidade</label>
             <input id="quantidade" name="quantidade" type="number" value=0></input>
 
-           <p>Valor total da compra: </p> <div id="valor_total"></div>
+           <div class="valorCompra">
+                <p>Valor total da compra: </p> 
+                <div id="valor_total"></div>
+           </div>
 
             <input type="submit" value="Lançar Compra"></input>
         </form>

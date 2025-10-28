@@ -53,10 +53,6 @@
         a:hover{
             text-decoration: underline;
         }
-        
-        h2{
-            /*border: 1px solid black;*/
-        }
 
         footer{
             border: 2px solid green;
@@ -71,8 +67,10 @@
 <body>
     <div class="centro">
         @include('partials.nav', ['x'=>0])
+        @include ('partials.menu')
 
         <main>
+            <img class="peloCliente" src="./PeloCliente.jpg" alt="">
 
         </main>
     </div>
@@ -87,7 +85,7 @@
             </div>
 
             <div class="yamauti">
-                <img src="Gustavo.jpeg" alt="">
+                <img src="" alt="">
                 <div class="info">
                     <h1>Nome: Gustavo Noda Yamauti</h1>
                     <h1>RA: 0379/24</h1>

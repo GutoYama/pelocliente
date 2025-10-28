@@ -51,6 +51,13 @@
             gap: 10px;
             transition: all 1s;
         }
+        
+        .valorCompra{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
 
         input:focus{
             background-image: linear-gradient(to left, #FFA626, #FF9633);
