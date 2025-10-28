@@ -14,7 +14,9 @@
             flex-direction: column;
 
             width: 400px;
-            height: 500px;
+            min-height: 500px;
+            max-height: 75vh;
+            overflow-y: auto;
 
             position: absolute;
             left: 50%;
@@ -107,6 +109,37 @@
             position: relative;
             left: -10%;
             top: -23%;
+        }
+
+        .cpf, .endereco{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+        }
+
+        .enviarPedido{
+            transition: all 1s ease;
+        }
+
+        .enviarPedido:hover{
+            border: 1px solid black;
+            background-color: #FFC823;
+            cursor: pointer;
+        }
+
+        #itensDoPedido{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .botaoPedido{
+            background-color: white;
+            height: 30px;
+            border: none;
+            border-radius: 20px;
         }
     </style>
 </head>

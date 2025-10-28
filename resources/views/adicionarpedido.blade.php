@@ -2,11 +2,12 @@
 <html>
     <body>
         @include('partials.nav', ['x'=>0])
+        @include('partials.formularios')
         <form action='adicionar_bd' method='POST'>    
         @csrf
             
-            <button id='botaoCadastrado' type='button' onclick='modificarParaCliente(true)'>Pedido para cliente cadastrado</button>
-            <button id='botaoNaoCadastrado' type='button' onclick='modificarParaCliente(false)'>Pedido para Cliente não cadastrado</button>
+            <button class="botaoPedido" id='botaoCadastrado' type='button' onclick='modificarParaCliente(true)'>Pedido para cliente cadastrado</button>
+            <button class="botaoPedido" id='botaoNaoCadastrado' type='button' onclick='modificarParaCliente(false)'>Pedido para Cliente não cadastrado</button>
 
             <div id='formularioClienteCadastrado'>
                 <label>Cliente</label>
@@ -19,10 +20,17 @@
                 </select>
 
                 <div id='dadosDoCliente'>
-                    <label>Endereço </label>
-                    <div id='endereco'></div>
-                    <label>CPF </label>
-                    <div id='cpf'></div>
+
+                    <div class="endereco">
+                        <label>Endereço: </label>
+                        <div id='endereco'></div>
+                    </div>
+                    
+                    <div class="cpf">
+                        <label>CPF: </label>
+                        <div id='cpf'></div>    
+                    </div>
+                
                 </div>
             </div>
             <div id='formularioClienteNaoCadastrado'>
@@ -30,14 +38,14 @@
                 <input id='enderecoNaoCadastrado' name='enderecoNaoCadastrado'></input>
             </div>
 
-            <button type='button' onclick='adicionarItem()'>Adicionar Item</button>
+            <button class="botaoPedido" type='button' onclick='adicionarItem()'>Adicionar Item</button>
 
             <div id='itensDoPedido'>
             </div>
 
             <p id='valorTotal'>Valor Total: R$ 0.0</p>
 
-            <center><input class="enviar" type='submit' value='Finalizar Pedido'></center>
+            <center><input class="enviarPedido" type='submit' value='Finalizar Pedido'></center>
         </form>
     </body>
 
