@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/10/2025 às 01:18
+-- Tempo de geração: 28/10/2025 às 15:54
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -108,7 +108,7 @@ INSERT INTO `compra` (`cod_compra`, `cod_ingrediente`, `cod_fornecedor`, `quanti
 -- Acionadores `compra`
 --
 DELIMITER $$
-CREATE TRIGGER `up_ingr` AFTER INSERT ON `compra` FOR EACH ROW UPDATE ingrediente
+CREATE TRIGGER `up_ingr` AFTER INSERT ON `compra` FOR EACH ROW UPDATE ingredientes
 SET quantidade = quantidade + NEW.quantidade
 WHERE cod_ingrediente = NEW.cod_ingrediente
 $$
@@ -172,6 +172,26 @@ INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_un
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `itens_pedido`
+--
+
+CREATE TABLE `itens_pedido` (
+  `cod_prato` int(11) NOT NULL,
+  `cod_pedido` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `itens_pedido`
+--
+
+INSERT INTO `itens_pedido` (`cod_prato`, `cod_pedido`, `quantidade`) VALUES
+(4, 5, 1),
+(5, 5, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `pedido`
 --
 
@@ -180,18 +200,20 @@ CREATE TABLE `pedido` (
   `cod_cliente` int(11) NOT NULL,
   `valor_total` float NOT NULL,
   `endereco` varchar(100) NOT NULL,
-  `datahora` datetime NOT NULL
+  `datahora` datetime NOT NULL,
+  `entregue` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pedido`
 --
 
-INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `datahora`) VALUES
-(1, 101, 75.5, 'Rua das Flores, 123 - Centro', '2025-10-20 14:35:00'),
-(2, 102, 120, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00'),
-(3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00'),
-(4, 104, 230.9, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00');
+INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `datahora`, `entregue`) VALUES
+(1, 101, 75.5, 'Rua das Flores, 123 - Centro', '2025-10-20 14:35:00', 1),
+(2, 102, 120, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00', 0),
+(3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00', 0),
+(4, 104, 230.9, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00', 0),
+(5, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-28 14:50:58', 0);
 
 -- --------------------------------------------------------
 
@@ -220,7 +242,7 @@ INSERT INTO `prato` (`cod_prato`, `descricao`, `valor`) VALUES
 -- Acionadores `prato`
 --
 DELIMITER $$
-CREATE TRIGGER `baixa_ingr` AFTER INSERT ON `prato` FOR EACH ROW UPDATE ingrediente i
+CREATE TRIGGER `baixa_ingr` AFTER INSERT ON `prato` FOR EACH ROW UPDATE ingredientes i
     JOIN prato pi ON i.cod_ingrediente = pi.cod_ingrediente
     SET i.quantidade = i.quantidade - pi.quantidade_utilizada
     WHERE pi.cod_prato = NEW.cod_prato
@@ -288,6 +310,13 @@ ALTER TABLE `ingrediente`
   ADD KEY `fk_ingrediente_unidade` (`cod_unidade`);
 
 --
+-- Índices de tabela `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  ADD KEY `fk_itens_pedido_pedido` (`cod_pedido`),
+  ADD KEY `fk_itens_pedido_prato` (`cod_prato`);
+
+--
 -- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
@@ -320,7 +349,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `cod_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cod_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`
@@ -338,7 +367,7 @@ ALTER TABLE `ingrediente`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `prato`
@@ -375,6 +404,13 @@ ALTER TABLE `compra`
 --
 ALTER TABLE `ingrediente`
   ADD CONSTRAINT `fk_ingrediente_unidade` FOREIGN KEY (`cod_unidade`) REFERENCES `unidade` (`cod_unidade`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  ADD CONSTRAINT `fk_itens_pedido_pedido` FOREIGN KEY (`cod_pedido`) REFERENCES `pedido` (`cod_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_itens_pedido_prato` FOREIGN KEY (`cod_prato`) REFERENCES `prato` (`cod_prato`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

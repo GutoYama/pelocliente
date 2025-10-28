@@ -8,10 +8,11 @@
         public $valor_total;
         public $endereco;
         public $datahora;
+        public $entregue;
 
         public function addPedido($cod_cliente, $valor_total, $endereco, $datahora){
             DB::insert(
-                'INSERT INTO pedido (cod_cliente, valor_total, endereco, datahora) VALUES (?, ?, ?, ?)',
+                'INSERT INTO pedido (cod_cliente, valor_total, endereco, datahora, entregue) VALUES (?, ?, ?, ?, false)',
                 [$cod_cliente, $valor_total, $endereco, $datahora]
             );
 
@@ -36,6 +37,12 @@
             DB::delete(
                 'DELETE FROM pedido WHERE cod_pedido=?',
                 [$cod_pedido]
+            );
+        }
+
+        public function setEntregue($cod_pedido){
+            DB::update(
+                'UPDATE pedido SET entregue=true WHERE cod_pedido=?',[$cod_pedido]
             );
         }
     
