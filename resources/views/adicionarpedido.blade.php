@@ -97,6 +97,11 @@
             var labelQuantidade = document.createElement('label');
             labelQuantidade.innerText = "Quantidade ";
 
+            var optionPratoVazia = document.createElement('option');
+            optionPratoVazia.value = "";
+            optionPratoVazia.innerText = "";
+            selectPrato.appendChild(optionPratoVazia);
+
             for (var i = 0; i < pratos.length; i++)
             {
                 var optionPrato = document.createElement('option');
