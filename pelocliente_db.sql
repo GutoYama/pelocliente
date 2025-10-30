@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/10/2025 às 15:54
+-- Tempo de geração: 30/10/2025 às 23:40
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -102,13 +102,14 @@ INSERT INTO `compra` (`cod_compra`, `cod_ingrediente`, `cod_fornecedor`, `quanti
 (3, 1, 3, 15),
 (4, 2, 1, 30),
 (5, 2, 2, 50),
-(6, 2, 4, 40);
+(6, 2, 4, 40),
+(10, 1, 1, 2);
 
 --
 -- Acionadores `compra`
 --
 DELIMITER $$
-CREATE TRIGGER `up_ingr` AFTER INSERT ON `compra` FOR EACH ROW UPDATE ingredientes
+CREATE TRIGGER `up_ingr` AFTER INSERT ON `compra` FOR EACH ROW UPDATE ingrediente
 SET quantidade = quantidade + NEW.quantidade
 WHERE cod_ingrediente = NEW.cod_ingrediente
 $$
@@ -159,7 +160,7 @@ CREATE TABLE `ingrediente` (
 --
 
 INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_unidade`, `valor_unit`) VALUES
-(1, 'Farinha de Trigo', 5, 1, 4.5),
+(1, 'Farinha de Trigo', 7, 1, 4.5),
 (2, 'Ovos', 12, 2, 0.8),
 (4, 'Mussarela', 2, 3, 4),
 (5, 'Manteiga', 1, 1, 7.5),
@@ -237,17 +238,6 @@ INSERT INTO `prato` (`cod_prato`, `descricao`, `valor`) VALUES
 (3, 'Arroz com Ovo e Legumes', 13),
 (4, 'Sopa de Legumes', 11.5),
 (5, 'Sanduíche Natural', 15);
-
---
--- Acionadores `prato`
---
-DELIMITER $$
-CREATE TRIGGER `baixa_ingr` AFTER INSERT ON `prato` FOR EACH ROW UPDATE ingredientes i
-    JOIN prato pi ON i.cod_ingrediente = pi.cod_ingrediente
-    SET i.quantidade = i.quantidade - pi.quantidade_utilizada
-    WHERE pi.cod_prato = NEW.cod_prato
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -349,7 +339,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `cod_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cod_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`
