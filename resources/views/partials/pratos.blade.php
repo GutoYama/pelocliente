@@ -6,7 +6,10 @@
                 flex-wrap: wrap;
                 justify-content: space-evenly;
                 width: 100%;
+                height: calc(100vh - 120px);
                 gap: 20px;
+                overflow-x: hidden;
+                padding-bottom: 20px;
             }
 
             .pratos{

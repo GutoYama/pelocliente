@@ -4,7 +4,7 @@
         body{
             display: flex;
             flex-direction: row;
-            background-image: linear-gradient(190deg, #ebb644ff, #e9cc4bff);
+            background-image: linear-gradient(190deg, #ebb644ff, #F0996A);
         }
 
         form{
