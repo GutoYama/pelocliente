@@ -10,7 +10,7 @@
                 right: 0;
                 
                 border-top: 1px solid black;
-                background-image: linear-gradient(to right, #DB3E3A, #FF5B26);
+                //background-image: linear-gradient(to right, #DB3E3A, #FF5B26);
 
                 display: flex;
                 justify-content: flex-end;

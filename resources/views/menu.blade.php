@@ -105,7 +105,7 @@
                 <img src="" alt="">
                 <div class="info">
                     <h2>Nome: DOUGLAS FRANCISCO BONAFIM MAGNANI PEIXOTO</h2 >
-                    <h1>RA: /24</h1>
+                    <h1>RA: 0267/24</h1>
                 </div>
             </div>
 
@@ -145,7 +145,7 @@
 
             setTimeout(function(){
                 elemento.className = "falaGustavoTres";
-                elemento.innerHTML = "NUNCA VI UM DOUGLAS TÃO INCOMPETENTE!!!";
+                elemento.innerHTML = "OUTROS DOUGLAS? ENTRADA NÃO PERMITIDA!!!";
             }, 1000);
 
             setTimeout(function(){

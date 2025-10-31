@@ -6,11 +6,12 @@
                 display: flex;
                 flex-direction: row;
                 align-items: flex-start;
-                background-image: linear-gradient(190deg, #ebb644ff, #e9cc4bff);
+                background-color: white;
+                background-image: linear-gradient(190deg, #ebb644ff, #F0996A);
             }
 
             table {
-                border-collapse: collapse; 
+                border-collapse: collapse;
                 width: 100%;
                 overflow-y: hidden;
             }
