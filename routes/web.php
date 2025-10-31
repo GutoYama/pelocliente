@@ -545,3 +545,23 @@ Route::get('/pedidoEditar', function(Request $request){
 
     return view('editarpedido', ['temcliente'=>true, 'clientes'=>$cliente->listarCliente(), 'cod_cliente'=>$cod_cliente, 'pedido'=>$dados_do_pedido, 'itens_pedido'=>$itens_pedido->listarItens_pedidoPorPedido($cod_pedido), 'pratos'=>$prato->listarPrato()]);
 });
+
+Route::get('/pedidoEditar_bd', function(Request $request){
+    $pedido = new Pedido;
+    $dados_pedido = $pedido->selectPedido($request->query('cod_pedido'));
+
+    $pedido->updatePedido($dados_pedido[0]->cod_pedido, $request->query('cliente'), 0, $request->query('enderecoEntrega'), $dados_pedido[0]->datahora);
+
+    $itens_pedido = new Itens_pedido;
+
+    $itens_pedido->deleteItens_pedidoPorPedido($request->query('cod_pedido'));
+
+    $totalDePratos = count($request['pratos']);
+    for ($i = 0; $i < $totalDePratos; $i++)
+    {
+        $itens_pedido->addItens_pedido($request['pratos'][$i], $request->query('cod_pedido'), $request['quantidades'][$i]);
+    }
+
+    return view('menu');
+});
+

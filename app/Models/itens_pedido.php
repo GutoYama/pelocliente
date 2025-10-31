@@ -45,6 +45,13 @@
                 [$cod_prato, $cod_pedido]
             );
         }
+
+        public function deleteItens_pedidoPorPedido($cod_pedido){
+            DB::delete(
+                'DELETE FROM itens_pedido WHERE cod_pedido=?',
+                [$cod_pedido]
+            );
+        }
     
     }
 ?>
