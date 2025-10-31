@@ -2,8 +2,9 @@
     <head>
         <style>
             body{
-            margin: 0;
-            padding: 0;
+                margin: 0;
+                padding: 0;
+                background-image: linear-gradient(190deg, #ebb644ff, #F0996A);
             }
 
             nav{
@@ -77,12 +78,15 @@
                 @else <h2 class="menuopcao"><a class="menulink" href="/ingrediente">Ingrediente</a></h2>
             @endif
 
-             @if($x == 6) <h2 class="menuopcaoselecionada"><a class="menulink" href="/unidade">Unidade</a></h2>
+            @if($x == 6) <h2 class="menuopcaoselecionada"><a class="menulink" href="/unidade">Unidade</a></h2>
                 @else <h2 class="menuopcao"><a class="menulink" href="/unidade">Unidade</a></h2>
             @endif
 
             <h2 class="menuopcao"><a class="menulink">Itens Pedido</a></h2>
-            <h2 class="menuopcao"><a class="menulink">Pedidos</a></h2>
+            
+            @if($x == 8) <h2 class="menuopcaoselecionada"><a class="menulink" href="/pedido">Pedidos</a></h2>
+                @else <h2 class="menuopcao"><a class="menulink" href="/pedido">Pedidos</a></h2>
+            @endif
 
              @if($x == 9) <h2 class="menuopcaoselecionada"><a class="menulink" href="/prato">Pratos</a></h2>
                 @else <h2 class="menuopcao"><a class="menulink" href="/prato">Pratos</a></h2>

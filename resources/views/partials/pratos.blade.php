@@ -11,12 +11,10 @@
                 overflow-x: hidden;
                 padding-top: 20px;
                 padding-bottom: 20px;
-
-                border:3px solid green;
             }
 
             .pratos{
-                background-color: white;
+                background-color: #ebb644ff;
 
                 display: flex;
                 flex-direction: column;
@@ -26,7 +24,7 @@
 
                 //background-image: linear-gradient(to left, #DC4F3E, #DB423C);
 
-                border: 1px solid red;
+                border: 2px solid #aa5731ff;
                 border-radius: 15px;
             }
 

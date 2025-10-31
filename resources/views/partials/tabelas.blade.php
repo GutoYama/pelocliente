@@ -6,14 +6,18 @@
                 display: flex;
                 flex-direction: row;
                 align-items: flex-start;
-                background-color: white;
                 background-image: linear-gradient(190deg, #ebb644ff, #F0996A);
             }
 
             table {
+                margin: 20px;
                 border-collapse: collapse;
                 width: 100%;
                 overflow-y: hidden;
+            }
+
+            .tabelaComposicao{
+                margin: 0;
             }
             th, td{
                 height: 30px;         
