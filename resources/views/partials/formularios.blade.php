@@ -137,7 +137,11 @@
 
         .botaoPedido{
             background-color: white;
-            height: 30px;
+
+            font-size: 23px;
+
+            height: 70px;
+            
             border: none;
             border-radius: 20px;
         }
