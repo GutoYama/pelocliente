@@ -530,3 +530,18 @@ Route::post('/pedido/adicionar_bd', function(Request $request){
 
     return redirect()->route('menu');
 });
+
+Route::get('/pedidoEditar', function(Request $request){
+    $itens_pedido = new Itens_pedido;
+    $pedido = new Pedido;
+    
+    $cod_pedido = $request->query('id');
+    $dados_do_pedido = $pedido->selectPedido($cod_pedido);
+
+    $cliente = new Cliente;
+    $cod_cliente = $pedido->cod_cliente;
+
+    $prato = new Prato;
+
+    return view('editarpedido', ['temcliente'=>true, 'clientes'=>$cliente->listarCliente(), 'cod_cliente'=>$cod_cliente, 'pedido'=>$dados_do_pedido, 'itens_pedido'=>$itens_pedido->listarItens_pedidoPorPedido($cod_pedido), 'pratos'=>$prato->listarPrato()]);
+});
