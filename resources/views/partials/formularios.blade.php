@@ -15,7 +15,7 @@
 
             width: 400px;
             min-height: 500px;
-            max-height: 75vh;
+            max-height: 500px;
             overflow-y: auto;
 
             position: absolute;
@@ -132,7 +132,31 @@
         #itensDoPedido{
             display: flex;
             flex-direction: column;
+
             gap: 10px;
+        }
+
+        #item{
+            display: flex;
+            flex-direction: row;
+            gap: 10px
+        }
+
+        form #PartePrato{
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+        }
+
+        form #ParteQuantidade{
+            display: flex;
+            flex-direction: column;
+            width: 70px;
+        }
+
+        form #ParteQuantidade input{
+            position: relative;
+            left: 25px;
         }
 
         .botaoPedido{

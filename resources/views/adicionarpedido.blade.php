@@ -80,6 +80,15 @@
         {
             contadorDeItens++;
 
+            var Item = document.createElement('div');
+            Item.id = 'item';
+
+            var primeiraDiv = document.createElement('div');
+            primeiraDiv.id = 'PartePrato';
+
+            var segundaDiv = document.createElement('div');
+            segundaDiv.id = 'ParteQuantidade';
+
             var selectPrato = document.createElement('select');
             selectPrato.addEventListener('change', calcularValorTotal);
             selectPrato.name = 'pratos[]';
@@ -114,11 +123,16 @@
 
             var divItensDoPedido = document.getElementById('itensDoPedido');
             
-            divItensDoPedido.appendChild(labelPrato);
-            divItensDoPedido.appendChild(selectPrato);
+            primeiraDiv.appendChild(labelPrato);
+            primeiraDiv.appendChild(selectPrato);
 
-            divItensDoPedido.appendChild(labelQuantidade);
-            divItensDoPedido.appendChild(inputQuantidade);
+            segundaDiv.appendChild(labelQuantidade);
+            segundaDiv.appendChild(inputQuantidade);
+
+            Item.appendChild(primeiraDiv);
+            Item.appendChild(segundaDiv);
+
+            divItensDoPedido.appendChild(Item);
 
             divItensDoPedido.appendChild('<br>');
         }
