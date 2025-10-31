@@ -61,6 +61,13 @@
         document.getElementById('formularioClienteCadastrado').style.display = 'none';
         document.getElementById('formularioClienteNaoCadastrado').style.display = 'none';
 
+        function excluirIngrediente(botaoExcluirIgrediente)
+        {
+            var divIngrediente = botaoExcluirIgrediente.parentElement;
+
+            divIngrediente.remove();
+        }
+
         function modificarParaCliente(isCadastrado)
         {
             document.getElementById('botaoNaoCadastrado').remove();
@@ -131,6 +138,15 @@
 
             Item.appendChild(primeiraDiv);
             Item.appendChild(segundaDiv);
+
+            var botaoExcluir = document.createElement('button');
+            botaoExcluir.type = 'button';
+            botaoExcluir.onclick = function(){
+                excluirIngrediente(botaoExcluir);
+            };
+            botaoExcluir.innerText = 'Lixeira/Excluir Ingrediente';
+
+            Item.appendChild(botaoExcluir);
 
             divItensDoPedido.appendChild(Item);
 
