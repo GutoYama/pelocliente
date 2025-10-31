@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/10/2025 às 23:40
+-- Tempo de geração: 31/10/2025 às 01:57
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -161,11 +161,11 @@ CREATE TABLE `ingrediente` (
 
 INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_unidade`, `valor_unit`) VALUES
 (1, 'Farinha de Trigo', 7, 1, 4.5),
-(2, 'Ovos', 12, 2, 0.8),
+(2, 'Ovos', 2, 2, 0.8),
 (4, 'Mussarela', 2, 3, 4),
-(5, 'Manteiga', 1, 1, 7.5),
-(7, 'Macarrão', 2, 1, 3),
-(8, 'Alho', 0.3, 1, 1.5),
+(5, 'Manteiga', 0.93, 1, 7.5),
+(7, 'Macarrão', 1.8, 1, 3),
+(8, 'Alho', 0.28, 1, 1.5),
 (9, 'Legumes Sortidos', 2, 1, 5),
 (10, 'Pão de Forma', 1, 1, 2.5),
 (11, 'Arroz', 1, 1, 3);
@@ -188,7 +188,23 @@ CREATE TABLE `itens_pedido` (
 
 INSERT INTO `itens_pedido` (`cod_prato`, `cod_pedido`, `quantidade`) VALUES
 (4, 5, 1),
-(5, 5, 2);
+(5, 5, 2),
+(1, 6, 1),
+(2, 7, 1),
+(2, 8, 2),
+(2, 9, 2);
+
+--
+-- Acionadores `itens_pedido`
+--
+DELIMITER $$
+CREATE TRIGGER `baix_ingr` AFTER INSERT ON `itens_pedido` FOR EACH ROW UPDATE ingrediente i
+    INNER JOIN composicao c 
+        ON i.cod_ingrediente = c.cod_ingrediente
+    SET i.quantidade = i.quantidade - (c.quantidade * NEW.quantidade)
+    WHERE c.cod_prato = NEW.cod_prato
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -214,7 +230,11 @@ INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `d
 (2, 102, 120, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00', 0),
 (3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00', 0),
 (4, 104, 230.9, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00', 0),
-(5, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-28 14:50:58', 0);
+(5, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-28 14:50:58', 0),
+(6, 1, 0, 'Rua das Laranjeiras, 120 - Centro', '2025-10-31 00:36:04', 0),
+(7, 1, 0, 'Rua das Laranjeiras, 120 - Centro', '2025-10-31 00:36:46', 0),
+(8, 1, 0, 'Rua das Laranjeiras, 120 - Centro', '2025-10-31 00:37:10', 0),
+(9, 1, 0, 'Rua das Laranjeiras, 120 - Centro', '2025-10-31 00:38:29', 0);
 
 -- --------------------------------------------------------
 
@@ -357,7 +377,7 @@ ALTER TABLE `ingrediente`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `prato`
