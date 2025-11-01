@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/10/2025 às 23:40
+-- Tempo de geração: 01/11/2025 às 15:00
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -64,9 +64,6 @@ CREATE TABLE `composicao` (
 --
 
 INSERT INTO `composicao` (`cod_prato`, `cod_ingrediente`, `quantidade`) VALUES
-(1, 7, 0.2),
-(1, 8, 0.02),
-(1, 5, 0.02),
 (2, 2, 2),
 (2, 5, 0.01),
 (3, 2, 1),
@@ -77,7 +74,15 @@ INSERT INTO `composicao` (`cod_prato`, `cod_ingrediente`, `quantidade`) VALUES
 (4, 5, 0.02),
 (5, 10, 0.1),
 (5, 4, 0.05),
-(5, 5, 0.01);
+(5, 5, 0.01),
+(9, 10, 0.5),
+(9, 2, 2),
+(9, 5, 0.1),
+(1, 8, 0.5),
+(1, 5, 0.1),
+(1, 7, 1),
+(10, 7, 2),
+(10, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -89,21 +94,9 @@ CREATE TABLE `compra` (
   `cod_compra` int(11) NOT NULL,
   `cod_ingrediente` int(11) NOT NULL,
   `cod_fornecedor` int(11) NOT NULL,
-  `quantidade` float NOT NULL
+  `quantidade` float NOT NULL,
+  `datahora` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `compra`
---
-
-INSERT INTO `compra` (`cod_compra`, `cod_ingrediente`, `cod_fornecedor`, `quantidade`) VALUES
-(1, 1, 1, 10),
-(2, 1, 2, 20),
-(3, 1, 3, 15),
-(4, 2, 1, 30),
-(5, 2, 2, 50),
-(6, 2, 4, 40),
-(10, 1, 1, 2);
 
 --
 -- Acionadores `compra`
@@ -188,7 +181,18 @@ CREATE TABLE `itens_pedido` (
 
 INSERT INTO `itens_pedido` (`cod_prato`, `cod_pedido`, `quantidade`) VALUES
 (4, 5, 1),
-(5, 5, 2);
+(5, 5, 2),
+(2, 8, 2),
+(5, 8, 1),
+(1, 7, 2),
+(5, 7, 1),
+(3, 9, 1),
+(1, 9, 1),
+(5, 9, 2),
+(5, 10, 1),
+(2, 10, 2),
+(5, 11, 3),
+(2, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +218,12 @@ INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `d
 (2, 102, 120, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00', 0),
 (3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00', 0),
 (4, 104, 230.9, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00', 0),
-(5, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-28 14:50:58', 0);
+(5, 2, 0, 'Rua', '2025-10-28 14:50:58', 0),
+(7, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-31 03:29:23', 0),
+(8, 5, 0, 'Av. das Nações, 500 - Centro', '2025-10-31 03:40:33', 0),
+(9, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-11-01 04:45:41', 0),
+(10, 0, 0, 'Gilmar, mora bem longe', '2025-11-01 04:52:42', 0),
+(11, 3, 0, 'Rua da Tecnologia, 50 - Pinheiros', '2025-11-01 04:54:12', 0);
 
 -- --------------------------------------------------------
 
@@ -233,11 +242,13 @@ CREATE TABLE `prato` (
 --
 
 INSERT INTO `prato` (`cod_prato`, `descricao`, `valor`) VALUES
-(1, 'Macarrão ao Alho e Óleo', 14),
+(1, 'Macarrão ao Alho e Óleo', 250),
 (2, 'Omelete Simples', 12.5),
 (3, 'Arroz com Ovo e Legumes', 13),
 (4, 'Sopa de Legumes', 11.5),
-(5, 'Sanduíche Natural', 15);
+(5, 'Sanduíche Natural', 15),
+(9, 'Burgão do BOM', 53),
+(10, 'Vai tuno dele', 10);
 
 -- --------------------------------------------------------
 
@@ -357,13 +368,13 @@ ALTER TABLE `ingrediente`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `prato`
 --
 ALTER TABLE `prato`
-  MODIFY `cod_prato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cod_prato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `unidade`

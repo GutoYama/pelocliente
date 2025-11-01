@@ -388,7 +388,8 @@ Route::post('/compra/adicionar_bd', function(Request $request) {
     $compra->addCompra(
         $request->input('ingrediente'),
         $request->input('fornecedor'),
-        $request->input('quantidade')
+        $request->input('quantidade'),
+        Carbon::now()
     );
 
     return redirect()->route('compra');
@@ -583,5 +584,7 @@ Route::get('/pedidoEditar_bd', function(Request $request){
 // RELATÓRIOS
 
 Route::get('/relatorios', function(){
-    
+    $prato = new Prato;
+
+    return view('relatorios', ['pratos_vendidos'=>$prato->totalVendido()]);
 });

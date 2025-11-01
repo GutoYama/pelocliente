@@ -7,11 +7,12 @@
         public $cod_ingrediente;
         public $cod_fornecedor;
         public $quantidade;
+        public $datahora;
 
-        public function addCompra($cod_ingrediente, $cod_fornecedor, $quantidade){
+        public function addCompra($cod_ingrediente, $cod_fornecedor, $quantidade, $datahora){
             DB::insert(
-                'INSERT INTO compra (cod_ingrediente, cod_fornecedor, quantidade) VALUES (?, ?, ?)',
-                [$cod_ingrediente, $cod_fornecedor, $quantidade]
+                'INSERT INTO compra (cod_ingrediente, cod_fornecedor, quantidade, datahora) VALUES (?, ?, ?, ?)',
+                [$cod_ingrediente, $cod_fornecedor, $quantidade, $datahora]
             );
         }
     
