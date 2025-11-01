@@ -10,29 +10,44 @@
         <form action='/composicaoEditar_bd' method='POST' id='form_composicao'>
             @csrf
             
-            <input type='hidden' name='cod_prato' value='{{$composicoes[0]->cod_prato}}'>
+            <input type='hidden' name='cod_prato' value='{{$prato[0]->cod_prato}}'>
 
-            <p>{{$composicoes[0]->descricao_prato}}</p>
+            <input type='text' name='descricao_prato' value='{{$prato[0]->descricao}}'>
+
+            <input type='number' name='valor_prato' value='{{$prato[0]->valor}}'>
             
             @php $contador = 0; @endphp
 
             @foreach($composicoes as $composicao)
                 @php $contador += 1; @endphp
-                <select name='cod_ingrediente[]' onchange='verificarIngrediente(event)' id='ingrediente{{$contador}}'>
-                    @foreach($ingredientes as $ingrediente)
-                        <option value='{{$ingrediente->cod_ingrediente}}' {{ $composicao->cod_ingrediente == $ingrediente->cod_ingrediente ? 'selected' : '' }} >{{$ingrediente->descricao}}</option>
-                    @endforeach
-                </select>
+                <script>contadorDeComposicoes++</script>
+                <div id='composicao{{$contador}}'>
+                    <select name='cod_ingrediente[]' onchange='verificarIngrediente(event)' id='ingrediente{{$contador}}'>
+                        <option></option>
+                        @foreach($ingredientes as $ingrediente)
+                            <option value='{{$ingrediente->cod_ingrediente}}' {{ $composicao->cod_ingrediente == $ingrediente->cod_ingrediente ? 'selected' : '' }} >{{$ingrediente->descricao}}</option>
+                        @endforeach
+                    </select>
 
-                <input value='{{$composicao->quantidade}}' name='quantidade[]' type='number' step='0.01'>
-                <p>{{$composicao->sigla}}</p>
+                    <input value='{{$composicao->quantidade}}' name='quantidade[]' type='number' step='0.01'>
+                    <p>{{$composicao->sigla}}</p>
+
+                    <button type='button' onclick='excluirComposicao(event)'>Lixeira/Excluir ingrediente</button>
+                </div>
             @endforeach
+
+            <button class="adicionarComposicao" type='button' onclick='adicionarComposicao()'>
+                <img class="adicionar" src="https://cdn-icons-png.flaticon.com/128/54/54414.png" alt="">
+                Adicionar Ingrediente na Composicao
+            </button>
 
             <center><input class="enviar" type='submit' value='salvar'></center>
         </form>
     </body>
 
     <script>
+        var contadorDeComposicoes = @json($contador);
+
         var ingredientes_selecionados_originais = {};
 
         var selects_ingredientes_originais = document.getElementById('form_composicao').querySelectorAll('select');
@@ -42,8 +57,6 @@
             var select = selects_ingredientes_originais[i];
             ingredientes_selecionados_originais[select.id] = select.selectedIndex;
         }
-
-        console.log(ingredientes_selecionados_originais)
 
         function verificarIngrediente(event)
         {
@@ -62,6 +75,63 @@
                     }
                 }
             }
+        }
+
+        function excluirComposicao(event)
+        {
+            var divComposicao = event.target.parentElement;
+
+            divComposicao.remove();
+        }
+
+        function alterarUnidade(event)
+        {
+            if (event.target === undefined)
+            {
+                var cod_ingrediente_selecionado = 1;
+                var formComposicaoPai = document.getElementById('composicao1').querySelector('p')
+            }
+            else
+            {
+                var cod_ingrediente_selecionado = event.target.selectedOptions[0].value;
+                var formComposicaoPai = event.target.parentElement.querySelector('p');
+            }
+
+            for(var i = 0; i < ingredientes.length; i++)
+            {
+                if (ingredientes[i]['cod_ingrediente'] == cod_ingrediente_selecionado)
+                {
+                    formComposicaoPai.innerText = ingredientes[i]['sigla'];
+                }
+            }
+        }
+
+        function adicionarComposicao()
+        {
+            contadorDeComposicoes++;
+
+            //document.getElementById('totaldeingredientes').value = contadorDeComposicoes;
+
+            var formComposicaoOriginal = document.getElementById('composicao' + (contadorDeComposicoes - 1).toString());
+
+            console.log('composicao' + (contadorDeComposicoes - 1).toString());
+
+            var formComposicao = formComposicaoOriginal.cloneNode(true); // Chama form mas não é o form todo, só a quantidade e os ingredientes
+
+            formComposicao.id = 'composicao' + contadorDeComposicoes.toString();
+
+            formComposicao.querySelector('select').id = 'ingrediente' + contadorDeComposicoes.toString();
+            formComposicao.querySelector('select').name = 'cod_ingrediente[]';
+            
+            formComposicao.querySelector('input').id= 'quantidadeingrediente' + contadorDeComposicoes.toString();
+            formComposicao.querySelector('input').name = 'quantidade[]' + contadorDeComposicoes.toString();
+
+            formComposicao.querySelector('p').id= 'unidade' + contadorDeComposicoes.toString();
+
+            formComposicao.querySelector('select').addEventListener('change', alterarUnidade);
+            formComposicao.querySelector('select').addEventListener('change', verificarIngrediente);
+
+            formComposicaoOriginal.after(formComposicao);
         }
     </script>
 </html>

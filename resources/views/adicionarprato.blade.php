@@ -9,7 +9,7 @@
             <input name="descricao" type="text"></input>
 
             <label>Valor</label>
-            <input name="valor" type="text"></input>
+            <input name="valor" type="number"></input>
 
             <center><input class="enviar" type="submit"></input></center>
         </form>

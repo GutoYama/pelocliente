@@ -9,13 +9,11 @@
 
         <form action='/composicao/adicionar_bd' method='POST'>
             @csrf
-            <label for="">Pratos</label>
-            <select id='prato' name='prato'>
-                    <option value="">Selecionar Prato</option>  
-                @foreach($pratos as $prato)
-                    <option value='{{$prato->cod_prato}}'>{{$prato->descricao}}</option>
-                @endforeach
-            </select>
+            <label for="">Dados do Prato</label>
+            <label>Nome </label>
+            <input type='text' name='descricao_prato'>
+            <label>Valor </label>
+            <input type='number' name='valor_prato'>
 
             <div id='ingredientes_do_prato'>
             
@@ -32,6 +30,7 @@
 
                     <input type='number' id='quantidadeingrediente1' name='quantidadeingrediente1' step='any'>
                     <p id='unidade1'>  </p>
+                    <button type='button' onclick='excluirComposicao(event)'>Lixeira</button>
                 </div>
 
             <input type='hidden' id='totaldeingredientes' name='totaldeingredientes' value=1>
@@ -48,6 +47,13 @@
             var contadorDeComposicoes = 1;
             var ingredientes = @json($ingredientes);
             
+            function excluirComposicao(event)
+            {
+                var divComposicao = event.target.parentElement;
+
+                divComposicao.remove();
+            }
+
             function adicionarIngrediente()
             {
 
@@ -65,50 +71,20 @@
                 {
                     var selectIngrediente = document.getElementById('ingrediente' + i);
                     
-                    if (selectIngrediente.id != id_select)
+                    if (selectIngrediente != null)
                     {
-                        if (selectIngrediente.value == cod_ingrediente_selecionado)
+                        if (selectIngrediente.id != id_select)
                         {
-                            alert('Prezado(a) funcionário, não é permitido a inclusão do mesmo ingrediente mais de uma vez.');
+                            if (selectIngrediente.value == cod_ingrediente_selecionado)
+                            {
+                                alert('Prezado(a) funcionário, não é permitido a inclusão do mesmo ingrediente mais de uma vez.');
 
-                            event.target.selectedIndex = 0;
-                            break;
+                                event.target.selectedIndex = 0;
+                                break;
+                            }
                         }
-                    }
+                    }                    
                 }
-            }
-
-            function alterarIngredientesListados(event)
-            {
-                if (event.target === undefined)
-                    var cod_prato = 1;
-                else
-                    var cod_prato = event.target.value;
-
-                $.ajax({
-                    url: '/composicao/listar_composicoes',
-                    type: 'GET',
-                    data: {id: cod_prato},
-                    success: function(resposta){
-                        
-                        var composicoesListadas = document.getElementById('ingredientes_do_prato');
-                        composicoesListadas.innerHTML = "";
-
-                        for(var i = 0; i < resposta.composicoes.length; i++)
-                        {
-                            var novoIngrediente = document.createElement('ul');
-                            novoIngrediente.id = 'novo_ingrediente';
-                            
-                            novoIngrediente.innerHTML = "<li>" + 
-                                resposta.composicoes[i].descricao_ingrediente + " " + 
-                                resposta.composicoes[i].quantidade + 
-                                resposta.composicoes[i].sigla + 
-                                "</li>";
-
-                            composicoesListadas.appendChild(novoIngrediente);
-                        }
-                    }
-                });
             }
 
             function alterarUnidade(event)

@@ -30,7 +30,8 @@
             return DB::select(
                 'SELECT p.cod_pedido, c.cod_cliente, c.nome, p.valor_total, p.endereco, p.datahora, p.entregue FROM pedido p
                 LEFT OUTER JOIN cliente c
-                ON p.cod_cliente = c.cod_cliente'
+                ON p.cod_cliente = c.cod_cliente
+                ORDER BY p.datahora DESC'
             );
         }
     

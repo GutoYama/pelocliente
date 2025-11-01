@@ -12,6 +12,8 @@
                 'INSERT INTO prato (descricao, valor) VALUES (?, ?)',
                 [$descricao, $valor]
             );
+
+            return DB::getPdo()->lastInsertId();
         }
     
         public function updatePrato($cod_prato, $descricao, $valor){

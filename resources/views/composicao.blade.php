@@ -11,6 +11,7 @@
             @foreach($composicoes as $composicao)
             <div class="pratos">
                 <center><p>{{$composicao[0]->descricao_prato}}</p></center>
+                <p>{{$composicao[0]->valor}}</p>
                 <table class="tabelaComposicao">
                     <thead>
                         <tr>

@@ -275,6 +275,8 @@ Route::get('/composicao', function(){
         $composicoes_separadas[] = $composicao_unica;
     }
 
+    //dd($composicoes_separadas);
+
     return view ('composicao', ['composicoes'=>$composicoes_separadas]);
 })->name('composicao');
 
@@ -293,16 +295,17 @@ Route::get('/composicao/listar_composicoes', function(Request $request){
 
 
 Route::get('/composicao/adicionar', function(){
-    $prato = new Prato;
     $ingrediente = new Ingrediente;
 
-    return view('adicionarcomposicao', ['pratos'=>$prato->listarPrato(), 'ingredientes'=>$ingrediente->listarIngrediente()]); 
+    return view('adicionarcomposicao', ['ingredientes'=>$ingrediente->listarIngrediente()]); 
 });
 
 Route::post('/composicao/adicionar_bd', function(Request $request){
-    
+    $prato = new Prato;
+
+    $cod_prato = $prato->addPrato($request->input('descricao_prato'), $request->input('valor_prato'));
+
     $totalDeIngredientes = $request->input('totaldeingredientes');
-    $cod_prato = $request->input('prato');
 
     $composicao = new Composicao;
 
@@ -325,8 +328,11 @@ Route::get('/composicaoEditar', function(Request $request){
     $cod_prato = (int)$request->query('id');
 
     $ingrediente = new Ingrediente;
+
+    $prato = new Prato;
     
-    return view('editarcomposicao', ['composicoes'=>$composicao->listarComposicaoPorPrato($cod_prato), 'ingredientes'=>$ingrediente->listarIngrediente()]);
+    return view('editarcomposicao', ['prato'=>$prato->selectPrato($cod_prato), 'composicoes'=>$composicao->listarComposicaoPorPrato($cod_prato), 
+    'ingredientes'=>$ingrediente->listarIngrediente()]);
 })->name('composicaoEditar');
 
 Route::post('/composicaoEditar_bd', function(Request $request){
@@ -337,10 +343,16 @@ Route::post('/composicaoEditar_bd', function(Request $request){
 
     //dd($request->all());
 
+    $composicao->deleteComposicaoPorPrato($cod_prato);
+
     for ($i = 0; $i < $numIngredientes; $i++)
     {
-        $composicao->updateComposicao($cod_prato, (int)$request['cod_ingrediente'][$i], (float)$request['quantidade'][$i]);
+        $composicao->addComposicao($cod_prato, (int)$request['cod_ingrediente'][$i], (float)$request['quantidade'][$i]);
     }
+
+    $prato = new Prato;
+
+    $prato->updatePrato($cod_prato, $request->input('descricao_prato'), $request->input('valor_prato'));
     
     return redirect()->route('composicao');
 });
@@ -489,7 +501,7 @@ Route::get('/pedido', function(){
     
 
     return view('pedido', ['pedidos'=>$dadosPedido]);
-});
+})->name('pedido');
 
 
 Route::get('/pedido/adicionar', function(){
@@ -528,7 +540,7 @@ Route::post('/pedido/adicionar_bd', function(Request $request){
         $itens_pedido->addItens_pedido($request['pratos'][$i], $cod_pedido, $request['quantidades'][$i]);
     }
 
-    return redirect()->route('menu');
+    return redirect()->route('pedido');
 });
 
 Route::get('/pedidoEditar', function(Request $request){

@@ -30,7 +30,7 @@
 
         public function listarComposicao(){
             return DB::select(
-                'SELECT c.cod_prato, p.descricao AS descricao_prato, c.cod_ingrediente, i.descricao AS descricao_ingrediente, c.quantidade, u.sigla FROM composicao c
+                'SELECT c.cod_prato, p.descricao AS descricao_prato, p.valor, c.cod_ingrediente, i.descricao AS descricao_ingrediente, c.quantidade, u.sigla FROM composicao c
                 INNER JOIN prato p
                 ON c.cod_prato = p.cod_prato
                 INNER JOIN ingrediente i
@@ -62,6 +62,13 @@
             DB::delete(
                 'DELETE FROM composicao WHERE cod_prato=? AND cod_ingrediente=?',
                 [$cod_prato, $cod_ingrediente]
+            );
+        }
+
+        public function deleteComposicaoPorPrato($cod_prato){
+            DB::delete(
+                'DELETE FROM composicao WHERE cod_prato=?',
+                [$cod_prato]
             );
         }
     
