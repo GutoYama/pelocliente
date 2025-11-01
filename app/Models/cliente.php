@@ -33,5 +33,16 @@
         public function deleteCliente($cod_cliente){
             DB::delete('delete from cliente where cod_cliente=?', [$cod_cliente]);
         }
+
+        public function totalPedidos(){
+            return DB::select(
+                'select c.nome, COUNT(p.cod_cliente) as total_pedidos, SUM(p.valor_total) as total_gasto
+                FROM cliente c
+                INNER JOIN pedido p
+                ON c.cod_cliente = p.cod_cliente
+                GROUP BY c.cod_cliente, c.nome
+                ORDER BY COUNT(p.cod_cliente) DESC'
+            );
+        }
     }
 ?>

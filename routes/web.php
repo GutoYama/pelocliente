@@ -605,5 +605,9 @@ Route::get('/relatorios', function(){
         $lucro_mes[] = ['data'=>$dataCarbon->locale('pt_BR')->translatedFormat('F \de Y'),'totalVendido'=>$totalVendido[0]->total, 'totalComprado'=>$totalComprado[0]->total, 'lucro'=>($totalVendido[0]->total - $totalComprado[0]->total)];
     }
 
-    return view('relatorios', ['pratos_vendidos'=>$prato->totalVendido(), 'lucro_mes'=>$lucro_mes, ]);
+    $cliente = new Cliente;
+
+    //dd($cliente->totalPedidos());
+
+    return view('relatorios', ['pratos_vendidos'=>$prato->totalVendido(), 'lucro_mes'=>$lucro_mes, 'compras_clientes'=>$cliente->totalPedidos()]);
 });
