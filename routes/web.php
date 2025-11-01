@@ -577,3 +577,11 @@ Route::get('/pedidoEditar_bd', function(Request $request){
     return view('menu');
 });
 
+
+// ====================================================================================
+
+// RELATÓRIOS
+
+Route::get('/relatorios', function(){
+    
+});
