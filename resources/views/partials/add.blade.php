@@ -2,6 +2,7 @@
     <head>
         <style>
             footer{
+                z-index: 100000;
                 width: calc(100% - 250px);
                 height: 100px;
                 
@@ -33,6 +34,7 @@
                 
                 color: black;
                 text-decoration: none;
+                box-shadow: 3px 3px 3px rgba(0,0,0, 0.5);
             }
             button:hover{
                 cursor: pointer;

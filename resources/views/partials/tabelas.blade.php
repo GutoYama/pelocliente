@@ -1,12 +1,10 @@
 <html>
     <head>
         <style>
-
             body{
                 display: flex;
                 flex-direction: row;
                 align-items: flex-start;
-                background-image: linear-gradient(190deg, #ebb644ff, #F0996A);
             }
 
             table {
