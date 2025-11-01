@@ -22,17 +22,17 @@
             </div>
 
             <label for="">Ingredientes</label>
-            <div class="composicao" id='composicao1'>
-                <select id='ingrediente1' name='ingrediente1'>
-                    <option value="">Selecionar Ingrediente</option>
-                @foreach($ingredientes as $ingrediente)
-                    <option value='{{$ingrediente->cod_ingrediente}}'>{{$ingrediente->descricao}}</option>
-                @endforeach
-                </select>
+                <div class="composicao" id='composicao1' onchange='(verificarIngredienteSelecionado)'>
+                    <select id='ingrediente1' name='ingrediente1'>
+                        <option value="">Selecionar Ingrediente</option>
+                    @foreach($ingredientes as $ingrediente)
+                        <option value='{{$ingrediente->cod_ingrediente}}'>{{$ingrediente->descricao}}</option>
+                    @endforeach
+                    </select>
 
-                <input type='number' id='quantidadeingrediente1' name='quantidadeingrediente1' step='any'>
-                <p id='unidade1'>  </p>
-            </div>
+                    <input type='number' id='quantidadeingrediente1' name='quantidadeingrediente1' step='any'>
+                    <p id='unidade1'>  </p>
+                </div>
 
             <input type='hidden' id='totaldeingredientes' name='totaldeingredientes' value=1>
 
@@ -51,6 +51,31 @@
             function adicionarIngrediente()
             {
 
+            }
+
+            function verificarIngredienteSelecionado(event)
+            {
+                var cod_ingrediente_selecionado = event.target.selectedOptions[0].value;
+
+                var id_select = event.target.id;
+
+                console.log(id_select);
+
+                for (var i = 1; i <= contadorDeComposicoes; i++)
+                {
+                    var selectIngrediente = document.getElementById('ingrediente' + i);
+                    
+                    if (selectIngrediente.id != id_select)
+                    {
+                        if (selectIngrediente.value == cod_ingrediente_selecionado)
+                        {
+                            alert('Mesmo ingrediente não pode ser adicionado duas vezes.');
+
+                            event.target.selectedIndex = 0;
+                            break;
+                        }
+                    }
+                }
             }
 
             function alterarIngredientesListados(event)
@@ -98,9 +123,6 @@
                     var cod_ingrediente_selecionado = event.target.selectedOptions[0].value;
                     var formComposicaoPai = event.target.parentElement.querySelector('p');
                 }
-                    
-
-                console.log(event.target);
 
                 for(var i = 0; i < ingredientes.length; i++)
                 {
@@ -140,6 +162,7 @@
                 formComposicao.querySelector('p').id= 'unidade' + contadorDeComposicoes.toString();
 
                 formComposicao.querySelector('select').addEventListener('change', alterarUnidade);
+                formComposicao.querySelector('select').addEventListener('change', verificarIngredienteSelecionado);
 
                 formComposicaoOriginal.after(formComposicao);
             }
