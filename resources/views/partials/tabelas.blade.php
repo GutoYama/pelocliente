@@ -30,11 +30,6 @@
             th{
                 font-size: 30px;
             }
-
-            td{
-
-            }
-
         </style>
     </head>
 </html>

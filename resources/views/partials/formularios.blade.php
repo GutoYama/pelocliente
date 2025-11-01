@@ -159,6 +159,24 @@
             left: 25px;
         }
 
+        form img{
+            border: 1px solid black;
+            border-radius: 7px;
+            background-color: #E55B5B;
+            color: white;
+            height: 25px;
+            position: relative;
+            left: 40px;
+            top: 17px;
+            scale: 1.5;
+            padding: 3px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .excluir:hover{
+            cursor:pointer;
+        }
+
         .botaoPedido{
             background-color: white;
 

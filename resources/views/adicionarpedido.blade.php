@@ -184,9 +184,10 @@
             Item.appendChild(primeiraDiv);
             Item.appendChild(segundaDiv);
 
-            var botaoExcluir = document.createElement('button');
-            botaoExcluir.type = 'button';
-            botaoExcluir.onclick = function(){
+            var botaoExcluir = document.createElement('img');
+            botaoExcluir.src = 'https://cdn-icons-png.flaticon.com/128/1214/1214428.png';
+                botaoExcluir.className = 'excluir';
+                botaoExcluir.onclick = function(){
                 excluirIngrediente(botaoExcluir);
             };
             botaoExcluir.innerText = 'Lixeira/Excluir Ingrediente';

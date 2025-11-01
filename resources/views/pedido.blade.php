@@ -80,6 +80,16 @@
             border-radius: 10px;
         }
 
+        .finalizar{
+            position: absolute;
+            right: -1125px;
+            border: 1px solid black;
+            border-radius: 10px;
+            height: 25px;
+            font-size: 20px;
+            background-color: transparent;
+        }
+
         .itensDoPedido{
             padding-left: 20px; 
             border: 1px solid red;
@@ -125,6 +135,9 @@
 
                         @if( $pedido['dados_do_pedido']->entregue  == 0)
                             <div class="emAndamento">Em andamento</div>
+
+                            <!--botão de finalizar pedido, ele só vai aparecer se o pedido estiver em andamento-->
+                            <button class="finalizar">Finalizar pedido</button>
                         @endif
 
                         @if(  $pedido['dados_do_pedido']->entregue  == 1)
