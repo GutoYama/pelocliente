@@ -33,8 +33,6 @@
     </body>
 
     <script>
-        // ADICIONAR FORMA DE NÃO DEIXAR O USUÁRIO TENTAR ADD DUAS VEZES O MESMO INGREDIENTE!!!
-
         var ingredientes_selecionados_originais = {};
 
         var selects_ingredientes_originais = document.getElementById('form_composicao').querySelectorAll('select');
@@ -58,7 +56,7 @@
                 {
                     if (cod_ingrediente_selecionado == selects_ingrediente[i].selectedOptions[0].value)
                     {
-                        alert('Ingrediente não pode ser adicionado duas vezes.');
+                        alert('Prezado(a) funcionário, não é permitido a inclusão do mesmo ingrediente mais de uma vez.');
                         
                         event.target.selectedIndex = ingredientes_selecionados_originais[event.target.id];
                     }

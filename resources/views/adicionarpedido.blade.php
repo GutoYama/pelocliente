@@ -61,11 +61,55 @@
         document.getElementById('formularioClienteCadastrado').style.display = 'none';
         document.getElementById('formularioClienteNaoCadastrado').style.display = 'none';
 
+        console.log(pratos);
+
+        function reacalcularValorTotal()
+        {
+            var selects_pratos = document.getElementById('itensDoPedido').querySelectorAll('select');
+            var quantidades_pratos = document.getElementById('itensDoPedido').querySelectorAll('input');
+            var valor_total = 0;
+
+            for (var i = 0; i < selects_pratos.length; i++)
+            {
+                for (var j = 0; j < pratos.length; j++)
+                {
+                    if (selects_pratos[i].selectedOptions[0].value == pratos[j].cod_prato)
+                    {
+                        valor_total += pratos[j].valor * quantidades_pratos[i].value;
+
+                        document.getElementById('valorTotal').innerText = 'Valor Total: R$ ' + valor_total;
+                    }
+                }
+            }
+        }
+
+        function verificarPrato(event)
+        {
+            var cod_prato = event.target.selectedOptions[0].value;
+
+            var selects_pratos = document.getElementById('itensDoPedido').querySelectorAll('select');
+
+            for (var i = 0; i < selects_pratos.length; i++)
+            {
+                if (event.target != selects_pratos[i])
+                {
+                    if (selects_pratos[i].selectedOptions[0].value == cod_prato)
+                    {
+                        alert('Prezado(a) funcionário, não é permitido a inclusão do mesmo prato mais de uma vez.');
+
+                        event.target.selectedIndex = 0;
+                    }
+                }
+            }
+        }
+
         function excluirIngrediente(botaoExcluirIgrediente)
         {
             var divIngrediente = botaoExcluirIgrediente.parentElement;
 
             divIngrediente.remove();
+
+            reacalcularValorTotal();
         }
 
         function modificarParaCliente(isCadastrado)
@@ -97,7 +141,8 @@
             segundaDiv.id = 'ParteQuantidade';
 
             var selectPrato = document.createElement('select');
-            selectPrato.addEventListener('change', calcularValorTotal);
+            selectPrato.addEventListener('change', reacalcularValorTotal);
+            selectPrato.addEventListener('change', verificarPrato);
             selectPrato.name = 'pratos[]';
             selectPrato.id = 'prato';
 
@@ -108,7 +153,7 @@
             inputQuantidade.name = 'quantidades[]';
             inputQuantidade.type = 'number';
             inputQuantidade.id = 'quantidade';
-            inputQuantidade.addEventListener('input', calcularValorTotal);
+            inputQuantidade.addEventListener('input', reacalcularValorTotal);
 
             var labelQuantidade = document.createElement('label');
             labelQuantidade.innerText = "Quantidade ";
@@ -168,34 +213,6 @@
                     cpfCliente.innerText = clientes[i].cpf;
                 }
             }
-        }
-
-        function calcularValorTotal()
-        {
-            var itensPedidoDiv = document.getElementById('itensDoPedido');
-            var itensPedido = itensPedidoDiv.children;
-
-            var valorTotal = 0;
-
-            for (var i = 0; i < itensPedido.length; i++)
-            {
-                if (itensPedido[i].id == 'prato')
-                {
-                    var valor_unitario = itensPedido[i].selectedOptions[0].dataset.valor_unitario;
-                    
-
-                    for (var j = i; j < itensPedido.length; j++)
-                    {
-                        if (itensPedido[j].id == 'quantidade')
-                        {
-                            valorTotal += valor_unitario * itensPedido[j].value;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            document.getElementById('valorTotal').innerText = 'Valor Total: R$ ' + valorTotal.toString();
         }
     </script>
 </html>

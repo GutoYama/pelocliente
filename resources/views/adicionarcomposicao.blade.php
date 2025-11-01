@@ -69,7 +69,7 @@
                     {
                         if (selectIngrediente.value == cod_ingrediente_selecionado)
                         {
-                            alert('Mesmo ingrediente não pode ser adicionado duas vezes.');
+                            alert('Prezado(a) funcionário, não é permitido a inclusão do mesmo ingrediente mais de uma vez.');
 
                             event.target.selectedIndex = 0;
                             break;
