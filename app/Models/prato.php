@@ -44,11 +44,11 @@
         }
 
         public function totalVendido(){
-            DB::select(
+            return DB::select(
                 'select p.descricao, sum(ip.quantidade) as quantidade_vendida
                 FROM prato p 
                 INNER JOIN itens_pedido ip ON p.cod_prato = ip.cod_prato 
-                GROUP BY p.cod_prato
+                GROUP BY p.cod_prato, p.descricao
                 ORDER BY sum(ip.quantidade) DESC'
             );
         }

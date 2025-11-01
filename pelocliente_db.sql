@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/11/2025 às 15:00
+-- Tempo de geração: 01/11/2025 às 16:37
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,60 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `pelocliente_db`
 --
+
+DELIMITER $$
+--
+-- Funções
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `nome_mes` (`data_ref` DATETIME) RETURNS VARCHAR(20) CHARSET utf8mb4 COLLATE utf8mb4_general_ci DETERMINISTIC BEGIN
+    DECLARE nome_mes VARCHAR(20);
+
+    SET lc_time_names = 'pt_BR';
+
+    SELECT MONTHNAME(data_ref) INTO nome_mes;
+
+    RETURN CONCAT(nome_mes, ' de ', YEAR(data_ref));
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `total_compras` (`data_ref` DATE) RETURNS DECIMAL(10,2) DETERMINISTIC BEGIN
+    DECLARE total DECIMAL(10,2);
+
+    SELECT IFNULL(SUM(c.quantidade * i.valor_unit), 0)
+    INTO total
+    FROM compras c
+    JOIN ingrediente i ON c.cod_ingrediente = i.cod_ingrediente
+    WHERE YEAR(c.datahora) = YEAR(data_ref)
+      AND MONTH(c.datahora) = MONTH(data_ref);
+
+    RETURN total;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `total_compras_mes` (`data_ref` DATE) RETURNS DECIMAL(10,2) DETERMINISTIC BEGIN
+    DECLARE total DECIMAL(10,2);
+
+    SELECT IFNULL(SUM(c.quantidade * i.valor_unit), 0)
+    INTO total
+    FROM compra c
+    JOIN ingrediente i ON c.cod_ingrediente = i.cod_ingrediente
+    WHERE YEAR(c.datahora) = YEAR(data_ref)
+      AND MONTH(c.datahora) = MONTH(data_ref);
+
+    RETURN total;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `total_vendido_mes` (`data_ref` DATE) RETURNS DECIMAL(10,3) DETERMINISTIC BEGIN
+    DECLARE total DECIMAL(10,3);
+
+    SELECT IFNULL(SUM(ped.valor_total), 0)
+    INTO total
+    FROM pedido ped
+    WHERE YEAR(ped.datahora) = YEAR(data_ref)
+      AND MONTH(ped.datahora) = MONTH(data_ref);
+
+    RETURN total;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -99,6 +153,15 @@ CREATE TABLE `compra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Despejando dados para a tabela `compra`
+--
+
+INSERT INTO `compra` (`cod_compra`, `cod_ingrediente`, `cod_fornecedor`, `quantidade`, `datahora`) VALUES
+(11, 5, 3, 2, '2025-11-01 14:06:14'),
+(12, 11, 1, 5, '2025-11-01 14:47:52'),
+(13, 8, 1, 20, '2025-11-01 14:48:02');
+
+--
 -- Acionadores `compra`
 --
 DELIMITER $$
@@ -156,12 +219,12 @@ INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_un
 (1, 'Farinha de Trigo', 7, 1, 4.5),
 (2, 'Ovos', 12, 2, 0.8),
 (4, 'Mussarela', 2, 3, 4),
-(5, 'Manteiga', 1, 1, 7.5),
+(5, 'Manteiga', 3, 1, 7.5),
 (7, 'Macarrão', 2, 1, 3),
-(8, 'Alho', 0.3, 1, 1.5),
+(8, 'Alho', 20.3, 1, 1.5),
 (9, 'Legumes Sortidos', 2, 1, 5),
 (10, 'Pão de Forma', 1, 1, 2.5),
-(11, 'Arroz', 1, 1, 3);
+(11, 'Arroz', 6, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -350,7 +413,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `cod_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cod_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`

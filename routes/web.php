@@ -585,6 +585,25 @@ Route::get('/pedidoEditar_bd', function(Request $request){
 
 Route::get('/relatorios', function(){
     $prato = new Prato;
+    
+    $compra = new Compra;
+    $pedido = new Pedido;
 
-    return view('relatorios', ['pratos_vendidos'=>$prato->totalVendido()]);
+    $compras = $compra->listarCompra();
+
+    $datas = $compra->listarMesesComCompraOuPedido();
+
+    $lucro_mes = [];
+
+    for ($i = 0; $i < count($datas); $i++)
+    {
+        $totalVendido = $pedido->selectValorTotalVendido($datas[$i]->datahora);
+        $totalComprado = $compra->selectValorTotalComprado($datas[$i]->datahora);
+
+        $dataCarbon = Carbon::parse($datas[$i]->datahora);
+
+        $lucro_mes[] = ['data'=>$dataCarbon->locale('pt_BR')->translatedFormat('F \de Y'),'totalVendido'=>$totalVendido[0]->total, 'totalComprado'=>$totalComprado[0]->total, 'lucro'=>($totalVendido[0]->total - $totalComprado[0]->total)];
+    }
+
+    return view('relatorios', ['pratos_vendidos'=>$prato->totalVendido(), 'lucro_mes'=>$lucro_mes, ]);
 });

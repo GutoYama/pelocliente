@@ -54,6 +54,13 @@
                 'UPDATE pedido SET entregue=true WHERE cod_pedido=?',[$cod_pedido]
             );
         }
+
+        public function selectValorTotalVendido($data){
+            return DB::select(
+                'select total_vendido_mes(?) as total',
+                [$data]
+            );
+        }
     
     }
 ?>
