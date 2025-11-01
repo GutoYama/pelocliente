@@ -28,6 +28,10 @@
                 border-radius: 15px;
             }
 
+            .pratos h6{
+                position: relative;
+            }
+
             p{
                 font-size: 40px;
             }

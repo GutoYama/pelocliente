@@ -1,6 +1,18 @@
 <html>
     <head>
         <style>
+
+            @font-face {
+                font-family: 'Tenada';
+                src: url('/fonts/Tenada.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            *{
+                font-family: 'One Slice', sans-serif;;
+            }
+            
             body{
                 margin: 0;
                 padding: 0;

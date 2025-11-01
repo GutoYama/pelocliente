@@ -46,12 +46,21 @@
         }
 
         .adicionarComposicao{
+            font-family: none;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 1s;
+            transition: all 0.5s;
+        }
+
+        .adicionarComposicao img{
+            width: 13px;
+            height: 13px;
+            position: relative;
+            top: 0;
+            left: 0;
         }
         
         .valorCompra{
@@ -111,6 +120,13 @@
             top: -23%;
         }
 
+        .composicao button{
+            position: relative;
+            right: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
         .cpf, .endereco{
             display: flex;
             flex-direction: row;
@@ -160,9 +176,7 @@
         }
 
         form img{
-            border: 1px solid black;
             border-radius: 7px;
-            background-color: #E55B5B;
             color: white;
             height: 25px;
             position: relative;
@@ -170,7 +184,6 @@
             top: 17px;
             scale: 1.5;
             padding: 3px;
-            box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .excluir:hover{
