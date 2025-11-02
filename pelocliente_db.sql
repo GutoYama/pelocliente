@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/11/2025 às 16:37
+-- Tempo de geração: 02/11/2025 às 01:33
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -217,11 +217,11 @@ CREATE TABLE `ingrediente` (
 
 INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_unidade`, `valor_unit`) VALUES
 (1, 'Farinha de Trigo', 7, 1, 4.5),
-(2, 'Ovos', 12, 2, 0.8),
+(2, 'Ovos', 2, 2, 0.8),
 (4, 'Mussarela', 2, 3, 4),
-(5, 'Manteiga', 3, 1, 7.5),
+(5, 'Manteiga', 1, 1, 7.5),
 (7, 'Macarrão', 2, 1, 3),
-(8, 'Alho', 20.3, 1, 1.5),
+(8, 'Alho', 0.3, 1, 1.5),
 (9, 'Legumes Sortidos', 2, 1, 5),
 (10, 'Pão de Forma', 1, 1, 2.5),
 (11, 'Arroz', 6, 1, 3);
@@ -244,18 +244,43 @@ CREATE TABLE `itens_pedido` (
 
 INSERT INTO `itens_pedido` (`cod_prato`, `cod_pedido`, `quantidade`) VALUES
 (4, 5, 1),
-(5, 5, 2),
-(2, 8, 2),
-(5, 8, 1),
-(1, 7, 2),
-(5, 7, 1),
-(3, 9, 1),
-(1, 9, 1),
-(5, 9, 2),
-(5, 10, 1),
-(2, 10, 2),
-(5, 11, 3),
-(2, 11, 1);
+(5, 5, 2);
+
+--
+-- Acionadores `itens_pedido`
+--
+DELIMITER $$
+CREATE TRIGGER `baixa_ingr` AFTER INSERT ON `itens_pedido` FOR EACH ROW UPDATE ingrediente i
+    JOIN composicao c ON i.cod_ingrediente = c.cod_ingrediente
+    SET i.quantidade = i.quantidade - (c.quantidade * NEW.quantidade)
+    WHERE c.cod_prato = NEW.cod_prato
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `estor_ingrediente` AFTER UPDATE ON `itens_pedido` FOR EACH ROW UPDATE ingrediente i
+        JOIN composicao c ON i.cod_ingrediente = c.cod_ingrediente
+        JOIN itens_pedido ip ON c.cod_prato = ip.cod_prato
+        SET i.quantidade = i.quantidade + (c.quantidade * ip.quantidade)
+        WHERE ip.cod_pedido = NEW.cod_pedido
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `estor_ingrediente2` AFTER DELETE ON `itens_pedido` FOR EACH ROW UPDATE ingrediente i
+    INNER JOIN composicao c 
+        ON i.cod_ingrediente = c.cod_ingrediente
+    INNER JOIN itens_pedido ip 
+        ON ip.cod_prato = c.cod_prato
+    SET i.quantidade = i.quantidade + (c.quantidade * ip.quantidade)
+    WHERE ip.cod_pedido = OLD.cod_pedido
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `valor pago` AFTER INSERT ON `itens_pedido` FOR EACH ROW UPDATE pedido p
+    JOIN prato pr ON pr.cod_prato = NEW.cod_prato
+    SET p.valor_total = p.valor_total + (pr.valor * NEW.quantidade)
+    WHERE p.cod_pedido = NEW.cod_pedido
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -281,12 +306,7 @@ INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `d
 (2, 102, 120, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00', 0),
 (3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00', 0),
 (4, 104, 230.9, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00', 0),
-(5, 2, 0, 'Rua', '2025-10-28 14:50:58', 0),
-(7, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-31 03:29:23', 0),
-(8, 5, 0, 'Av. das Nações, 500 - Centro', '2025-10-31 03:40:33', 0),
-(9, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-11-01 04:45:41', 0),
-(10, 0, 0, 'Gilmar, mora bem longe', '2025-11-01 04:52:42', 0),
-(11, 3, 0, 'Rua da Tecnologia, 50 - Pinheiros', '2025-11-01 04:54:12', 0);
+(5, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-28 14:50:58', 0);
 
 -- --------------------------------------------------------
 
@@ -431,7 +451,7 @@ ALTER TABLE `ingrediente`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `prato`
