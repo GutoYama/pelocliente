@@ -102,8 +102,8 @@
                 @else <h2 class="menuopcao"><a class="menulink" href="/prato">Pratos</a></h2>
             @endif
 
-            @if($x == 9) <h2 class="menuopcaoselecionada"><a class="menulink" href="/relatorios">Relatorio</a></h2>
-                @else <h2 class="menuopcao"><a class="menulink" href="/relatorios">Relatorio</a></h2>
+            @if($x == 9) <h2 class="menuopcaoselecionada"><a class="menulink" href="/relatorios">Relatório</a></h2>
+                @else <h2 class="menuopcao"><a class="menulink" href="/relatorios">Relatório</a></h2>
             @endif
         </nav>
 </html>

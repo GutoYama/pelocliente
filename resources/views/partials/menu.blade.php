@@ -35,6 +35,19 @@
                 right: 0;
                 filter:drop-shadow(5px 5px 2px red);
             }
+
+            .douglas{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 15px;
+            }
+            .douglasimg{
+                border-radius: 50%;
+                border: 1px solid black;
+                width: 100px;
+                height: 100px;
+            }
         </style>
     </head>
 </html>

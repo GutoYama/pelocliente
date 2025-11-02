@@ -73,8 +73,10 @@
         @include('partials.falas')
 
         <main>
+            <p class="vazio" id="falaGustavoUm"></p>
             <p class="vazio" id="falaGustavoDois"></p>
             <p class="vazio" id="falaGustavoTres"></p>
+            <p class="vazio" id="falaGustavoQuatro"></p>
 
             <img class="peloCliente" src="./PeloCliente.jpg" alt="">
             <img class="pose1" src="GustavoPose1.webp" alt="">
@@ -104,7 +106,7 @@
 
         <div class="parte2">
             <div class="douglas">
-                <img src="" alt="">
+                <img class="douglasimg" src="DouglasCoberto.jpg" alt="">
                 <div class="info">
                     <h2>Nome: DOUGLAS FRANCISCO BONAFIM MAGNANI PEIXOTO</h2 >
                     <h1>RA: 0267/24</h1>
@@ -114,14 +116,32 @@
             <div class="lucena">
                 <img src="" alt="">
                 <div class="info">
-                    <h1>Nome: Gabriel</h1>
-                    <h1>RA: /24</h1>
+                    <h1>Nome: Gabriel de Souza Lucena</h1>
+                    <h1>RA: 0598/24</h1>
                 </div>
             </div>
         </div>
     </footer>
 </body>
     <script>
+        function falarGustavoUm(){
+            var elemento = document.getElementById('falaGustavoUm');
+
+            setTimeout(function(){
+                elemento.className = "falaGustavoUm";
+                elemento.innerHTML = "Se não for pelo cliente eu nem faço";
+            }, 1500);
+
+            setTimeout(function(){
+                elemento.innerHTML = "";
+                elemento.className = "vazio";
+            }, 5500);
+
+            setTimeout(function(){
+                falarGustavoUm();
+            }, 3000);
+        }
+
         function falarGustavoDois(){
             var elemento = document.getElementById('falaGustavoDois');
             
@@ -140,14 +160,12 @@
             }, 8000);
         }
 
-        //falarGustavoDois();
-
         function falarGustavoTres(){
             var elemento = document.getElementById('falaGustavoTres');
 
             setTimeout(function(){
                 elemento.className = "falaGustavoTres";
-                elemento.innerHTML = "OUTROS DOUGLAS? ENTRADA NÃO PERMITIDA!!!";
+                elemento.innerHTML = "Se virem um Douglas, não dê nem água";
             }, 1000);
 
             setTimeout(function(){
@@ -160,6 +178,27 @@
             }, 5000);
         }
 
+        function falarGustavoQuatro(){
+            var elemento = document.getElementById('falaGustavoQuatro');
+
+            setTimeout(function(){
+                elemento.className = "falaGustavoQuatro";
+                elemento.innerHTML = "Pelo CLIENTE eu tiro o salário do Douglas!";
+            }, 600);
+
+            setTimeout(function(){
+                elemento.innerHTML = "";
+                elemento.className = "vazio";
+            }, 6000);
+
+            setTimeout(function(){
+                falarGustavoQuatro();
+            }, 3400);
+        }
+
+        //falarGustavoUm();
+        //falarGustavoDois();
         //falarGustavoTres();
+        //falarGustavoQuatro();
     </script>
 </html>
