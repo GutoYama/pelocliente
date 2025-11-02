@@ -71,8 +71,12 @@ Route::get('/fornecedorEditar_bd', function(Request $request){
 });
 
 
-Route::get('/fornecedorExcluir', function(){
-    return view('welcome');
+Route::get('/fornecedorExcluir', function(Request $request){
+    $fornecedor = new Fornecedor;
+
+    $fornecedor->deleteFornecedor((int)$request->id);
+
+    return redirect()->route('fornecedor');
 })->name('fornecedorExcluir');
 
 
@@ -128,8 +132,12 @@ Route::get('/clienteEditar_bd', function (Request $request){
     return redirect()->route('cliente');
 });
 
-Route::get('/clienteExcluir', function(){
-    return view('welcome');
+Route::get('/clienteExcluir', function(Request $request){
+    $cliente = new Cliente;
+
+    $cliente->deleteCliente((int)$request->query('id'));
+
+    return redirect()->route('cliente');
 })->name('clienteExcluir');
 
 
@@ -181,8 +189,12 @@ Route::get('/pratoEditar_bd', function(Request $request){
 });
 
 
-Route::get('/pratoExcluir', function(){
-    return view('welcome');
+Route::get('/pratoExcluir', function(Request $request){
+    $prato = new Prato;
+
+    $prato->deletePrato((int)$request->id);
+
+    return redirect()->route('prato');
 })->name('pratoExcluir');
 
 
@@ -243,8 +255,12 @@ Route::get('/ingredienteEditar_bd', function(Request $request){
 
 
 
-Route::get('/ingredienteExcluir', function(){
-    return view('welcome');
+Route::get('/ingredienteExcluir', function(Request $request){
+    $ingrediente = new Ingrediente;
+
+    $ingrediente->deleteIngrediente((int)$request->id);
+
+    return redirect()->route('ingrediente');
 })->name('ingredienteExcluir');
 
 
@@ -256,6 +272,8 @@ Route::get('/composicao', function(){
     
     $composicoes = $composicao->listarComposicao();
     $composicoes_separadas = [];
+
+    //dd($composicoes);
 
     for ($i = 0; $i < count($composicoes); $i++)
     {      
@@ -359,8 +377,12 @@ Route::post('/composicaoEditar_bd', function(Request $request){
 
 
 
-Route::get('/composicaoExcluir', function(){
-    return view('welcome');
+Route::get('/composicaoExcluir', function(Request $request){
+    $prato = new Prato;
+
+    $prato->deletePrato((int)$request->id);
+
+    return redirect()->route('composicao');
 })->name('composicaoExcluir');
 
 
@@ -424,8 +446,12 @@ Route::get('/compraEditar_bd', function (Request $request) {
 
 
 
-Route::get('/compraExcluir', function(){
-    return view('welcome');
+Route::get('/compraExcluir', function(Request $request){
+    $compra = new Compra;
+
+    $compra->deleteCompra((int)$request->id);
+
+    return redirect()->route('compra');
 })->name('compraExcluir');
 
 
@@ -477,8 +503,12 @@ Route::get('/unidadeEditar_bd', function(Request $request){
 
 
 
-Route::get('/unidadeExcluir', function(){
-    return view('welcome');
+Route::get('/unidadeExcluir', function(Request $request){
+    $unidade = new Unidade;
+
+    $unidade->deleteUnidade((int)$request->id);
+
+    return redirect()->route('unidade');
 })->name('unidadeExcluir');
 
 // ====================================================================================
@@ -503,6 +533,15 @@ Route::get('/pedido', function(){
 
     return view('pedido', ['pedidos'=>$dadosPedido]);
 })->name('pedido');
+
+
+Route::get('/pedido/marcar_finalizado', function(Request $request){
+    $pedido = new Pedido;
+
+    $pedido->setEntregue((int)$request->query('id'));
+
+    return redirect()->route('pedido');
+})->name('finalizarpedido');
 
 
 Route::get('/pedido/adicionar', function(){
@@ -557,7 +596,7 @@ Route::get('/pedidoEditar', function(Request $request){
     $prato = new Prato;
 
     return view('editarpedido', ['temcliente'=>true, 'clientes'=>$cliente->listarCliente(), 'cod_cliente'=>$cod_cliente, 'pedido'=>$dados_do_pedido, 'itens_pedido'=>$itens_pedido->listarItens_pedidoPorPedido($cod_pedido), 'pratos'=>$prato->listarPrato()]);
-});
+})->name('pedidoEditar');
 
 Route::get('/pedidoEditar_bd', function(Request $request){
     $pedido = new Pedido;

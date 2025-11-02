@@ -138,13 +138,15 @@
                             <div class="emAndamento">Em andamento</div>
 
                             <!--botão de finalizar pedido, ele só vai aparecer se o pedido estiver em andamento-->
-                            <button class="finalizar">Finalizar pedido</button>
+                            <button onclick="window.location.href='{{ route('finalizarpedido', ['id' => $pedido['dados_do_pedido']->cod_pedido]) }}'" class="finalizar">Finalizar pedido</button>
                         @endif
 
                         @if(  $pedido['dados_do_pedido']->entregue  == 1)
                             <div class="finalizado">Finalizado</div>
                         @endif
                     </h3>
+
+                    <button onclick="window.location.href='{{ route('pedidoEditar', ['id' => $pedido['dados_do_pedido']->cod_pedido]) }}'">Editar Pedido</button>
                 </div>
                 <div class="itensDoPedido">
                     <div class="identificacao">
