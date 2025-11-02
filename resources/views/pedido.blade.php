@@ -66,16 +66,17 @@
             background-color: green;
             position: absolute;
             top: -5px;
-            right: 45px;
+            right: 30px;
             padding: 5px;
             border-radius: 10px;
+            color: ;
         }
 
         .entregue .emAndamento{
             background-color: yellow;
             position: absolute;
             top: -5px;
-            right: 5px;
+            right: -15px;
             padding: 5px;
             border-radius: 10px;
         }

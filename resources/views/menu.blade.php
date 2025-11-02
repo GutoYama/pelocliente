@@ -196,9 +196,9 @@
             }, 3400);
         }
 
-        //falarGustavoUm();
-        //falarGustavoDois();
-        //falarGustavoTres();
-        //falarGustavoQuatro();
+        falarGustavoUm();
+        falarGustavoDois();
+        falarGustavoTres();
+        falarGustavoQuatro();
     </script>
 </html>

@@ -2,6 +2,8 @@
     <head>
         <style>
             .peloCliente{
+                width: 400px;
+
                 position: absolute;
                 left: 54%;
                 top: 30%;
