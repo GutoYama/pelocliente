@@ -30,7 +30,7 @@
 
                     <input type='number' id='quantidadeingrediente1' name='quantidadeingrediente1' step='any'>
                     <p id='unidade1'>  </p>
-                    <button type='button' onclick='excluirComposicao(event)'>Lixeira</button>
+                    <img class="excluirComposicao" src='https://cdn-icons-png.flaticon.com/128/1214/1214428.png' onclick='excluirComposicao(event)'>
                 </div>
 
             <input type='hidden' id='totaldeingredientes' name='totaldeingredientes' value=1>

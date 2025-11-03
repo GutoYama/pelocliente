@@ -81,6 +81,14 @@
             border-radius: 10px;
         }
 
+        .entregue img{
+            position: absolute;
+            left: 220px;
+            top: -12px;
+            width: 50px;
+            height: 50px;
+        }
+
         .finalizar{
             position: absolute;
             right: -1125px;
@@ -138,7 +146,12 @@
                             <div class="emAndamento">Em andamento</div>
 
                             <!--botão de finalizar pedido, ele só vai aparecer se o pedido estiver em andamento-->
+<<<<<<< HEAD
                             <button onclick="window.location.href='{{ route('finalizarpedido', ['id' => $pedido['dados_do_pedido']->cod_pedido]) }}'" class="finalizar">Finalizar pedido</button>
+=======
+                            <img class="imagemCozinhando" src="Cozinhando1.webp" alt="">
+                            <button class="finalizar">Finalizar pedido</button>
+>>>>>>> gustavoMenu
                         @endif
 
                         @if(  $pedido['dados_do_pedido']->entregue  == 1)
@@ -163,5 +176,26 @@
             </div>
         @endforeach
     </main>
+    <script>
+        function cozinhando() {
+            const imagens = document.querySelectorAll('.imagemCozinhando');
+            const quadros = [
+            'Cozinhando1.webp',
+            'Cozinhando2.webp',
+            'Cozinhando3.webp'
+            ];
+
+            imagens.forEach((imagem) => {
+            let i = 0;
+
+            setInterval(() => {
+                imagem.src = quadros[i];
+                i = (i + 1) % quadros.length;
+            }, 200);
+            });
+        }
+
+        cozinhando();
+    </script>
 </body>
 </html>

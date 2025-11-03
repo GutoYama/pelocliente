@@ -28,7 +28,7 @@
                 border-radius: 15px;
             }
 
-            .pratos h6{
+            .pratos h3{
                 position: relative;
             }
 
