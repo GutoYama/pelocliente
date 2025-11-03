@@ -10,7 +10,7 @@
             <div id='formularioClienteCadastrado'>
                 <label>Cliente</label>
                 <select id='opcoesDeClientes' name='cliente'>
-                    <option value=0></option>
+                    <option value = 0></option>
                     
                     @foreach($clientes as $cliente)
                         <option value='{{$cliente->cod_cliente}}' {{ $cliente->cod_cliente == $pedido[0]->cod_cliente ? 'selected' : '' }} >{{$cliente->nome}}</option>
@@ -20,21 +20,8 @@
                 <div id='dadosDoCliente'>
 
                     <div class="endereco">
-                        <label>Endereço: </label>
-                        <div id='endereco'></div>
+                        <label>Endereço: {{$pedido[0]->endereco}}</label>
                     </div>
-                    
-                    <div class="cpf">
-                        <label>CPF: </label>
-                        <div id='cpf'></div>    
-                    </div>
-                
-                </div>
-            </div>
-            <div id='formularioClienteNaoCadastrado'>
-                <label>Endereço </label>
-                <input id='enderecoEntrega' name='enderecoEntrega' value='{{$pedido[0]->endereco}}'></input>
-            </div>
 
             <button class="botaoPedido" type='button' onclick='adicionarItem()'>Adicionar Item</button>
 
@@ -59,7 +46,7 @@
                     <label>Quantidade</label>
                     <input name="quantidades[]" type="number" id="quantidade" value='{{$item_pedido->quantidade}}' oninput='reacalcularValorTotal()'>
 
-                    <button type='button' onclick='excluirIngrediente(this)'>Lixeira/Excluir ingrediente</button>
+                    <img src='https://cdn-icons-png.flaticon.com/128/1214/1214428.png' onclick='excluirIngrediente(this)'>
 
                 </div>
             @endforeach
