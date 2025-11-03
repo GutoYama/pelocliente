@@ -80,7 +80,7 @@
 
             <img class="peloCliente" src="./PeloCliente.jpg" alt="">
             <img class="pose1" src="GustavoPose1.webp" alt="">
-            <img class="pose2" src="GustavoPose2.webp" alt="">
+            <img class="pose2" id="GustavoPose2" src="GustavoPose2.webp" alt="">
             <img class="pose3" src="GustavoPose3.webp" alt="">
             <img class="pose4" src="GustavoPose4.webp" alt="">
         </main>
@@ -200,5 +200,26 @@
         //falarGustavoDois();
         //falarGustavoTres();
         //falarGustavoQuatro();
+
+        const imagem = document.getElementById("imagem");
+        const sensibilidade = 40; // quanto mais alto, menos se move
+
+        document.addEventListener("mousemove", (evento) => {
+        const { innerWidth, innerHeight } = window;
+        const x = (evento.clientX - innerWidth / 2) / sensibilidade;
+        const y = (evento.clientY - innerHeight / 2) / sensibilidade;
+
+        // Aplica leve rotação e translação
+        imagem.style.transform = `
+            translate(${x}px, ${y}px)
+            rotateY(${x * 0.5}deg)
+            rotateX(${-y * 0.5}deg)
+        `;
+        });
+
+        // Retorna ao centro quando o mouse sai da tela
+        document.addEventListener("mouseleave", () => {
+            imagem.style.transform = "translate(0px, 0px) rotateY(0deg) rotateX(0deg)";
+        });
     </script>
 </html>

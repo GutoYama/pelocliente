@@ -190,6 +190,12 @@
             cursor:pointer;
         }
 
+        .excluirComposicao{
+            cursor: pointer;
+            top: -2px;
+            left: 0;
+        }
+
         .botaoPedido{
             background-color: white;
 

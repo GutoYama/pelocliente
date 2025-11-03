@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <head>
+        <style>
+            .ingrediente{
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                align-items: center;    
+            }
+
+            .ingrediente p{
+                position: relative;
+                left: -40px;
+            }
+
+            .ingrediente input{
+                width: 70px;
+            }
+
+            .ingrediente img{
+                position: relative;
+                left: 0;
+                top: -2px;
+            }
+        </style>
+    </head>
     <body>
         @include('partials.nav', ['x'=>0])
         @include('partials.formularios')
@@ -12,16 +37,16 @@
             
             <input type='hidden' name='cod_prato' value='{{$prato[0]->cod_prato}}'>
 
-            <input type='text' name='descricao_prato' value='{{$prato[0]->descricao}}'>
+            <h2>{{ $prato[0]->descricao }}</h2>
 
-            <input type='number' name='valor_prato' value='{{$prato[0]->valor}}'>
+            <h3>Valor: {{ $prato[0]->valor }}</h3>
             
             @php $contador = 0; @endphp
 
             @foreach($composicoes as $composicao)
                 @php $contador += 1; @endphp
                 <script>contadorDeComposicoes++</script>
-                <div id='composicao{{$contador}}'>
+                <div class='ingrediente {{$contador}}'>
                     <select name='cod_ingrediente[]' onchange='verificarIngrediente(event)' id='ingrediente{{$contador}}'>
                         <option></option>
                         @foreach($ingredientes as $ingrediente)
@@ -32,7 +57,7 @@
                     <input value='{{$composicao->quantidade}}' name='quantidade[]' type='number' step='0.01'>
                     <p>{{$composicao->sigla}}</p>
 
-                    <button type='button' onclick='excluirComposicao(event)'>Lixeira/Excluir ingrediente</button>
+                    <img src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png" onclick='excluirComposicao(event)'>
                 </div>
             @endforeach
 
