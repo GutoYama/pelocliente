@@ -73,16 +73,16 @@
         @include('partials.falas')
 
         <main>
-            <p class="vazio" id="falaGustavoUm"></p>
-            <p class="vazio" id="falaGustavoDois"></p>
-            <p class="vazio" id="falaGustavoTres"></p>
-            <p class="vazio" id="falaGustavoQuatro"></p>
+            <p class="vazio" id="falaDouglas"></p>
+            <p class="vazio" id="falaGustavo"></p>
+            <p class="vazio" id="falaTeixeira"></p>
+            <p class="vazio" id="falaGabriel"></p>
 
             <img class="peloCliente" src="./PeloCliente.jpg" alt="">
-            <img class="pose1" src="GustavoPose1.webp" alt="">
+            <img class="pose1" src="DouglasPose1.webp" alt="">
             <img class="pose2" id="GustavoPose2" src="GustavoPose2.webp" alt="">
-            <img class="pose3" src="GustavoPose3.webp" alt="">
-            <img class="pose4" src="GustavoPose4.webp" alt="">
+            <img class="pose3" src="TeixeiraPose1.webp" alt="">
+            <img class="pose4" src="GabrielPose1.webp" alt="">
         </main>
     </div>
     <footer>
@@ -124,12 +124,12 @@
     </footer>
 </body>
     <script>
-        function falarGustavoUm(){
-            var elemento = document.getElementById('falaGustavoUm');
+        function falarDouglas(){
+            var elemento = document.getElementById('falaDouglas');
 
             setTimeout(function(){
-                elemento.className = "falaGustavoUm";
-                elemento.innerHTML = "Se não for pelo cliente eu nem faço";
+                elemento.className = "falaDouglas";
+                elemento.innerHTML = "Um Brinde, aos Clientes";
             }, 1500);
 
             setTimeout(function(){
@@ -138,16 +138,16 @@
             }, 5500);
 
             setTimeout(function(){
-                falarGustavoUm();
+                falarDouglas();
             }, 3000);
         }
 
-        function falarGustavoDois(){
-            var elemento = document.getElementById('falaGustavoDois');
+        function falarGustavo(){
+            var elemento = document.getElementById('falaGustavo');
             
             setTimeout(function(){
-                elemento.className = "falaGustavoDois";
-                elemento.innerHTML = "VAI TRABALHAR DOUGLAS!!!";
+                elemento.className = "falaGustavo";
+                elemento.innerHTML = "Se não for pelo cliente eu nem faço";
             }, 2000);
 
             setTimeout(function(){
@@ -156,16 +156,16 @@
             }, 5000);
 
             setTimeout(function(){
-                falarGustavoDois();
+                falarGustavo();
             }, 8000);
         }
 
-        function falarGustavoTres(){
-            var elemento = document.getElementById('falaGustavoTres');
+        function falarTeixeira(){
+            var elemento = document.getElementById('falaTeixeira');
 
             setTimeout(function(){
-                elemento.className = "falaGustavoTres";
-                elemento.innerHTML = "Se virem um Douglas, não dê nem água";
+                elemento.className = "falaTeixeira";
+                elemento.innerHTML = "mensagem";
             }, 1000);
 
             setTimeout(function(){
@@ -174,16 +174,16 @@
             }, 4000);
 
             setTimeout(function(){
-                falarGustavoTres();
+                falarTeixeira();
             }, 5000);
         }
 
-        function falarGustavoQuatro(){
-            var elemento = document.getElementById('falaGustavoQuatro');
+        function falarGabriel(){
+            var elemento = document.getElementById('falaGabriel');
 
             setTimeout(function(){
-                elemento.className = "falaGustavoQuatro";
-                elemento.innerHTML = "Pelo CLIENTE eu tiro o salário do Douglas!";
+                elemento.className = "falaGabriel";
+                elemento.innerHTML = "mensagem";
             }, 600);
 
             setTimeout(function(){
@@ -192,14 +192,14 @@
             }, 6000);
 
             setTimeout(function(){
-                falarGustavoQuatro();
+                falarGabriel();
             }, 3400);
         }
 
-        //falarGustavoUm();
-        //falarGustavoDois();
-        //falarGustavoTres();
-        //falarGustavoQuatro();
+        falarDouglas();
+        falarGustavo();
+        //falarTeixeira();
+        //falarGabriel();
 
         const imagem = document.getElementById("imagem");
         const sensibilidade = 40; // quanto mais alto, menos se move

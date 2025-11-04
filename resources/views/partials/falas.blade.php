@@ -1,7 +1,7 @@
 <html>
     <head>
         <style>
-            .falaGustavoUm, .falaGustavoDois, .falaGustavoTres, .falaGustavoQuatro{
+            .falaDouglas, .falaGustavo, .falaTeixeira, .falaGabriel{
                 position: absolute;
                 background-color: white;
                 border: 2px solid black;
@@ -9,12 +9,12 @@
                 padding: 4px;
             }
 
-            .falaGustavoUm{
+            .falaDouglas{
                 top: 8%;
-                left: 18%;
+                left: 19.5%;
             }
 
-            .falaGustavoDois{
+            .falaGustavo{
                 top: 15%;
                 left: 40%;
             }
