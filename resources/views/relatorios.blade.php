@@ -25,7 +25,7 @@
                 cursor: pointer;
             }
 
-            #botaoLucro{
+            #botaoCompraPorCliente{
                 background-image: linear-gradient(to top, #FFDE48, #E14339);
             }
 
@@ -58,11 +58,44 @@
             }
 
             #graficoLucro{
-                opacity: 1;
+                opacity: 0;
             }
 
             #RELATORIO_COMPRA_POR_CLIENTE{
-                opacity: 0;
+                opacity: 1;
+            }
+
+            #RELATORIO_COMPRA_POR_CLIENTE tbody tr:first-child, #RELATORIO_PRATOS_MAIS_VENDIDOS tbody tr:first-child{
+                background-image: radial-gradient(circle, #FFEA00, #FFD700, #B8860B);
+            }
+
+            .estrela1, .estrela2{
+                position: absolute;
+                z-index: 100;
+                animation: giragiraestrelinha 2s linear infinite;
+                top: 27px;
+            }
+
+            .estrela1{
+                left: 18px;
+            }
+
+            .estrela2{
+                right: 18px;
+            }
+
+            @keyframes giragiraestrelinha{
+                0%   { transform: rotate(0deg); }
+                10%  { transform: rotate(36deg); }
+                20%  { transform: rotate(72deg); }
+                30%  { transform: rotate(108deg); }
+                40%  { transform: rotate(144deg); }
+                50%  { transform: rotate(180deg); }
+                60%  { transform: rotate(216deg); }
+                70%  { transform: rotate(252deg); }
+                80%  { transform: rotate(288deg); }
+                90%  { transform: rotate(324deg); }
+                100% { transform: rotate(360deg); }
             }
         </style>
     </head>
@@ -75,6 +108,7 @@
             <button id="botaoCompraPorCliente" onclick="MostrarRelatorio('RELATORIO_COMPRA_POR_CLIENTE')">Compra por Cliente</button>
         </header>
             <main>
+                <div id="estrelas"></div>
                 <table id='RELATORIO_PRATOS_MAIS_VENDIDOS'>
                     <thead>
                         <tr>
@@ -128,7 +162,7 @@
 
                     <tbody>
                         @foreach($compras_clientes as $cliente)
-                            <tr>
+                            <tr class="{{ $cliente->nome }}">
                                 <td>{{ $cliente->nome }}</td>
                                 <td>{{ $cliente->total_pedidos }}</td>
                                 <td>{{ $cliente->total_gasto }}</td>
@@ -232,6 +266,46 @@
                         }
                     }
                 });
+            });
+
+            document.addEventListener("DOMContentLoaded", function() {
+                const tabela = document.querySelector("#RELATORIO_COMPRA_POR_CLIENTE tbody");
+                const primeiraLinha = tabela.querySelector("tr:first-child");
+
+                if (primeiraLinha) {
+                    var estrela1 = document.createElement('h1');
+                    estrela1.innerHTML = "⭐";
+                    estrela1.className = "estrela1";
+                    
+                    var estrela2 = document.createElement('h1');
+                    estrela2.innerHTML = "⭐";
+                    estrela2.className = "estrela2";
+
+                    var estrelas = document.getElementById('estrelas');
+
+                    estrelas.appendChild(estrela1);
+                    estrelas.appendChild(estrela2);
+                }
+            });
+
+            document.addEventListener("DOMContentLoaded", function() {
+                const tabela = document.querySelector("#RELATORIO_PRATOS_MAIS_VENDIDOS tbody");
+                const primeiraLinha = tabela.querySelector("tr:first-child");
+
+                if (primeiraLinha) {
+                    var estrela1 = document.createElement('h1');
+                    estrela1.innerHTML = "⭐";
+                    estrela1.className = "estrela1";
+                    
+                    var estrela2 = document.createElement('h1');
+                    estrela2.innerHTML = "⭐";
+                    estrela2.className = "estrela2";
+
+                    var estrelas = document.getElementById('estrelas');
+
+                    estrelas.appendChild(estrela1);
+                    estrelas.appendChild(estrela2);
+                }
             });
         </script>
     </body>

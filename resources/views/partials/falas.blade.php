@@ -19,13 +19,12 @@
                 left: 40%;
             }
 
-            .falaGustavoTres{
-                width: 300px;
+            .falaTeixeira{
                 top: 8%;
-                left: 64%;
+                left: 66%;
             }
 
-            .falaGustavoQuatro{
+            .falaGabriel{
                 width: 200px;
                 top: 5%;
                 left: 81%;

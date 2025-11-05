@@ -165,7 +165,7 @@
 
             setTimeout(function(){
                 elemento.className = "falaTeixeira";
-                elemento.innerHTML = "mensagem";
+                elemento.innerHTML = "Cliente bom é cliente feliz";
             }, 1000);
 
             setTimeout(function(){
@@ -183,7 +183,7 @@
 
             setTimeout(function(){
                 elemento.className = "falaGabriel";
-                elemento.innerHTML = "mensagem";
+                elemento.innerHTML = "Como você não não concluiu a entrega? Isso é pelo meu cliente";
             }, 600);
 
             setTimeout(function(){
@@ -198,8 +198,8 @@
 
         falarDouglas();
         falarGustavo();
-        //falarTeixeira();
-        //falarGabriel();
+        falarTeixeira();
+        falarGabriel();
 
         const imagem = document.getElementById("imagem");
         const sensibilidade = 40; // quanto mais alto, menos se move

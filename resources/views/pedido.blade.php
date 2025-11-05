@@ -92,6 +92,7 @@
         .finalizar{
             position: absolute;
             right: -1125px;
+            bottom: -55px;
             border: 1px solid black;
             border-radius: 10px;
             height: 25px;
@@ -120,6 +121,20 @@
         .pratoDoPedido{
             width: 400px;
         }
+
+        .botaoEditarPedido{
+            border: 1px solid black;
+            border-radius: 10px;
+
+            height: 25px;
+
+            margin-top: 10px;
+            margin-bottom: 20px;
+
+            font-size: 20px;
+
+            background-color: transparent;
+        }
     </style>
 </head>
 <body>
@@ -146,6 +161,7 @@
                             <div class="emAndamento">Em andamento</div>
 
                             <!--botão de finalizar pedido, ele só vai aparecer se o pedido estiver em andamento-->
+                            <img class="imagemCozinhando" src="" alt="">
                             <button onclick="window.location.href='{{ route('finalizarpedido', ['id' => $pedido['dados_do_pedido']->cod_pedido]) }}'" class="finalizar">Finalizar pedido</button>
                         @endif
 
@@ -154,7 +170,7 @@
                         @endif
                     </h3>
 
-                    <button onclick="window.location.href='{{ route('pedidoEditar', ['id' => $pedido['dados_do_pedido']->cod_pedido]) }}'">Editar Pedido</button>
+                    <button class="botaoEditarPedido" onclick="window.location.href='{{ route('pedidoEditar', ['id' => $pedido['dados_do_pedido']->cod_pedido]) }}'">Editar Pedido</button>
                 </div>
                 <div class="itensDoPedido">
                     <div class="identificacao">

@@ -170,6 +170,8 @@
             width: 70px;
         }
 
+        #ParteQuantidade
+
         form #ParteQuantidade input{
             position: relative;
             left: 25px;

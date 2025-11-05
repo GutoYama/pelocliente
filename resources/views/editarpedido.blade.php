@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <style>
+            #formularioClienteCadastrado{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #dadosDoCliente{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+        </style>
+    </head>
     <body>
         @include('partials.nav', ['x'=>0])
         @include('partials.formularios')
@@ -8,14 +23,16 @@
             <input type='hidden' name='cod_pedido' value='{{$pedido[0]->cod_pedido}}'>
 
             <div id='formularioClienteCadastrado'>
-                <label>Cliente</label>
-                <select id='opcoesDeClientes' name='cliente'>
-                    <option value = 0></option>
-                    
-                    @foreach($clientes as $cliente)
-                        <option value='{{$cliente->cod_cliente}}' {{ $cliente->cod_cliente == $pedido[0]->cod_cliente ? 'selected' : '' }} >{{$cliente->nome}}</option>
-                    @endforeach
-                </select>
+                <div class="cliente">
+                    <label>Cliente</label>
+                    <select id='opcoesDeClientes' name='cliente'>
+                        <option value = 0></option>
+                        
+                        @foreach($clientes as $cliente)
+                            <option value='{{$cliente->cod_cliente}}' {{ $cliente->cod_cliente == $pedido[0]->cod_cliente ? 'selected' : '' }} >{{$cliente->nome}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                 <div id='dadosDoCliente'>
 
@@ -23,7 +40,7 @@
                         <label>Endereço: {{$pedido[0]->endereco}}</label>
                     </div>
 
-            <button class="botaoPedido" type='button' onclick='adicionarItem()'>Adicionar Item</button>
+            <center><button class="botaoPedido" type='button' onclick='adicionarItem()'>Adicionar Item</button></center>
 
             <div id="itensDoPedido">
             
@@ -32,19 +49,23 @@
                 @php $contador += 1; @endphp
                 <script>contadorDeItens++;</script>
 
-                <div>
+                <div id="item">
 
-                    <label>Prato</label>
-                    <select name="pratos[]" id="prato{{$contador}}" onchange='verificarPrato(event);reacalcularValorTotal()'>
-                        <option value=""></option>
+                    <div id="PartePrato">
+                        <label>Prato</label>
+                        <select name="pratos[]" id="prato{{$contador}}" onchange='verificarPrato(event);reacalcularValorTotal()'>
+                            <option value=""></option>
 
-                        @foreach($pratos as $prato)
-                            <option data-valor_unitario="{{$prato->valor}}" value="{{$prato->cod_prato}}" {{$item_pedido->cod_prato == $prato->cod_prato ? 'selected' : ''}} >{{$prato->descricao}}</option>
-                        @endforeach
-                    </select>
+                            @foreach($pratos as $prato)
+                                <option data-valor_unitario="{{$prato->valor}}" value="{{$prato->cod_prato}}" {{$item_pedido->cod_prato == $prato->cod_prato ? 'selected' : ''}} >{{$prato->descricao}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                    <label>Quantidade</label>
-                    <input name="quantidades[]" type="number" id="quantidade" value='{{$item_pedido->quantidade}}' oninput='reacalcularValorTotal()'>
+                    <div id="ParteQuantidade">
+                        <label>Quantidade</label>
+                        <input name="quantidades[]" type="number" id="quantidade" value='{{$item_pedido->quantidade}}' oninput='reacalcularValorTotal()'>
+                    </div>
 
                     <img src='https://cdn-icons-png.flaticon.com/128/1214/1214428.png' onclick='excluirIngrediente(this)'>
 
