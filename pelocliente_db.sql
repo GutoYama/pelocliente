@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/11/2025 às 01:33
+-- Tempo de geração: 06/11/2025 às 22:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -99,7 +99,8 @@ INSERT INTO `cliente` (`cod_cliente`, `nome`, `cpf`, `endereco`, `telefone`, `em
 (2, 'Maria Oliveira', '98765432100', 'Av. Brasil, 980 - Jardim América', '(21) 99876-5432', 'maria.oliveira@email.com'),
 (3, 'Carlos Souza', '45678912344', 'Rua da Tecnologia, 50 - Pinheiros', '(31) 3456-1122', 'carlos.souza@email.com'),
 (4, 'Ana Pereira', '78912345611', 'Rua dos Coqueiros, 220 - Bela Vista', '(41) 3344-5566', 'ana.pereira@email.com'),
-(5, 'Paulo Lima', '32165498722', 'Av. das Nações, 500 - Centro', '(51) 2222-8888', 'paulo.lima@email.com');
+(5, 'Paulo Lima', '32165498722', 'Av. das Nações, 500 - Centro', '(51) 2222-8888', 'paulo.lima@email.com'),
+(6, 'Shrek', '53917284619', 'Pântano', '18995609222', 'shrek@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -216,15 +217,16 @@ CREATE TABLE `ingrediente` (
 --
 
 INSERT INTO `ingrediente` (`cod_ingrediente`, `descricao`, `quantidade`, `cod_unidade`, `valor_unit`) VALUES
-(1, 'Farinha de Trigo', 7, 1, 4.5),
-(2, 'Ovos', 2, 2, 0.8),
-(4, 'Mussarela', 2, 3, 4),
-(5, 'Manteiga', 1, 1, 7.5),
-(7, 'Macarrão', 2, 1, 3),
-(8, 'Alho', 0.3, 1, 1.5),
-(9, 'Legumes Sortidos', 2, 1, 5),
-(10, 'Pão de Forma', 1, 1, 2.5),
-(11, 'Arroz', 6, 1, 3);
+(1, 'Farinha de Trigo', 100, 1, 4.5),
+(2, 'Ovos', 100, 2, 0.8),
+(4, 'Mussarela', 100, 3, 4),
+(5, 'Manteiga', 100, 1, 7.5),
+(7, 'Macarrão', 100, 1, 3),
+(8, 'Alho', 100, 1, 1.5),
+(9, 'Legumes Sortidos', 100, 1, 5),
+(10, 'Pão de Forma', 100, 1, 2.5),
+(11, 'Arroz', 100, 1, 3),
+(12, 'Carne de boi', 100, 1, 45.5);
 
 -- --------------------------------------------------------
 
@@ -244,7 +246,24 @@ CREATE TABLE `itens_pedido` (
 
 INSERT INTO `itens_pedido` (`cod_prato`, `cod_pedido`, `quantidade`) VALUES
 (4, 5, 1),
-(5, 5, 2);
+(5, 5, 2),
+(2, 6, 1),
+(1, 6, 3),
+(3, 6, 5),
+(9, 7, 8),
+(2, 7, 4),
+(5, 8, 3),
+(4, 8, 2),
+(10, 8, 10),
+(1, 9, 2),
+(3, 9, 1),
+(4, 10, 1),
+(9, 10, 1),
+(3, 11, 2),
+(2, 11, 3),
+(1, 11, 11),
+(9, 11, 5),
+(10, 12, 2);
 
 --
 -- Acionadores `itens_pedido`
@@ -306,7 +325,14 @@ INSERT INTO `pedido` (`cod_pedido`, `cod_cliente`, `valor_total`, `endereco`, `d
 (2, 102, 120, 'Av. Brasil, 890 - Jardim América', '2025-10-21 09:20:00', 0),
 (3, 103, 48.75, 'Rua São José, 56 - Vila Nova', '2025-10-22 18:45:00', 0),
 (4, 104, 230.9, 'Rua das Acácias, 450 - Bela Vista', '2025-10-23 12:15:00', 0),
-(5, 2, 0, 'Av. Brasil, 980 - Jardim América', '2025-10-28 14:50:58', 0);
+(5, 2, 41.5, 'Av. Brasil, 980 - Jardim América', '2025-10-28 14:50:58', 1),
+(6, 6, 827.5, 'Pântano', '2025-11-06 21:26:54', 1),
+(7, 6, 474, 'Pântano', '2025-11-06 21:27:12', 0),
+(8, 6, 168, 'Pântano', '2025-11-06 21:27:40', 0),
+(9, 3, 513, 'Rua da Tecnologia, 50 - Pinheiros', '2025-11-06 21:28:11', 1),
+(10, 5, 64.5, 'Av. das Nações, 500 - Centro', '2025-11-06 21:28:29', 0),
+(11, 6, 3078.5, 'Pântano', '2025-11-06 21:28:56', 0),
+(12, 6, 20, 'Pântano', '2025-11-06 21:29:55', 0);
 
 -- --------------------------------------------------------
 
@@ -427,7 +453,7 @@ ALTER TABLE `unidade`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `cod_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `compra`
@@ -445,13 +471,13 @@ ALTER TABLE `fornecedor`
 -- AUTO_INCREMENT de tabela `ingrediente`
 --
 ALTER TABLE `ingrediente`
-  MODIFY `cod_ingrediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cod_ingrediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `prato`

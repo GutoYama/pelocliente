@@ -106,7 +106,6 @@
 
         <div class="parte2">
             <div class="douglas">
-                <img class="douglasimg" src="DouglasCoberto.jpg" alt="">
                 <div class="info">
                     <h2>Nome: DOUGLAS FRANCISCO BONAFIM MAGNANI PEIXOTO</h2 >
                     <h1>RA: 0267/24</h1>

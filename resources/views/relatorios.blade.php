@@ -191,6 +191,8 @@
                 var botaoPrato = document.getElementById('botaoPratoMaisVendido');
                 var botaoCompra = document.getElementById('botaoCompraPorCliente');
 
+
+
                 switch(ID){
                     case 'RELATORIO_LUCRO_POR_MES':
                         botaoLuc.style.backgroundImage = 'linear-gradient(to top, #FFDE48, #E14339)';
@@ -198,16 +200,22 @@
                         botaoCompra.style.backgroundImage = 'linear-gradient(to top, #E14339)';
                         lucro.style.opacity = 0;
                         grafico.style.opacity = 1;
+
+                        estrelas.style.opacity = 0;
                         break;
                     case 'RELATORIO_PRATOS_MAIS_VENDIDOS':
                         botaoLuc.style.backgroundImage = 'linear-gradient(to top, #E14339)';
                         botaoPrato.style.backgroundImage = 'linear-gradient(to top, #FFDE48, #E14339)';
                         botaoCompra.style.backgroundImage = 'linear-gradient(to top, #E14339)';
+                        
+                        estrelas.style.opacity = 1;
                         break;
                     case 'RELATORIO_COMPRA_POR_CLIENTE':
                         botaoLuc.style.backgroundImage = 'linear-gradient(to top, #E14339)';
                         botaoPrato.style.backgroundImage = 'linear-gradient(to top, #E14339)';
                         botaoCompra.style.backgroundImage = 'linear-gradient(to top, #FFDE48, #E14339)';
+                        
+                        estrelas.style.opacity = 1;
                         break;
                 }
             }
