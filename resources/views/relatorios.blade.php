@@ -165,7 +165,7 @@
                             <tr class="{{ $cliente->nome }}">
                                 <td>{{ $cliente->nome }}</td>
                                 <td>{{ $cliente->total_pedidos }}</td>
-                                <td>{{ $cliente->total_gasto }}</td>
+                                <td> R$ {{ $cliente->total_gasto }}</td>
                             </tr>
                         @endforeach
                     </tbody>
