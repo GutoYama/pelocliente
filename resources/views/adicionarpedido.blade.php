@@ -20,22 +20,22 @@
                 </select>
 
                 <div id='dadosDoCliente'>
-
-                    <div class="endereco">
-                        <label>Endereço: </label>
-                        <div id='endereco'></div>
-                    </div>
                     
                     <div class="cpf">
                         <label>CPF: </label>
                         <div id='cpf'></div>    
+                    </div>
+
+                    <div class="endereco">
+                        <label>Endereço: </label>
+                        <input id='endereco' name='enderecoEntregaCadastrado'></input>
                     </div>
                 
                 </div>
             </div>
             <div id='formularioClienteNaoCadastrado'>
                 <label>Endereço </label>
-                <input id='enderecoNaoCadastrado' name='enderecoNaoCadastrado'></input>
+                <input id='enderecoNaoCadastrado' name='enderecoEntrega'></input>
             </div>
 
             <button class="botaoPedido" type='button' onclick='adicionarItem()'>Adicionar Item</button>
@@ -210,7 +210,7 @@
                     var enderecoCliente = document.getElementById('endereco');
                     var cpfCliente = document.getElementById('cpf');
 
-                    enderecoCliente.innerText = clientes[i].endereco;
+                    enderecoCliente.value = clientes[i].endereco;
                     cpfCliente.innerText = clientes[i].cpf;
                 }
             }

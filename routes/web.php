@@ -557,15 +557,18 @@ Route::post('/pedido/adicionar_bd', function(Request $request){
     $cod_cliente = (int)$request->input('cliente');
 
     $cliente = new Cliente;
-    $endereco = "";
+    $endereco = $request->input('enderecoEntrega');
+
+    //dd($request->all());
 
     if ($cod_cliente == 0)
     {
-        $endereco = $request->input('enderecoNaoCadastrado');
+        $endereco = $request->input('enderecoEntrega');
     }
     else
     {
-        $endereco = $cliente->selectCliente($cod_cliente)[0]->endereco;
+        $endereco = $request->input('enderecoEntregaCadastrado');
+        //$endereco = $cliente->selectCliente($cod_cliente)[0]->endereco;
     }
 
     // Fiz uma modificação pra ele retornar o cod_pedido
