@@ -151,15 +151,22 @@
 
         function adicionarItem()
         {
-            var divIngrediente = document.createElement('div');
-
             contadorDeItens++;
+
+            var Item = document.createElement('div');
+            Item.id = 'item';
+
+            var primeiraDiv = document.createElement('div');
+            primeiraDiv.id = 'PartePrato';
+
+            var segundaDiv = document.createElement('div');
+            segundaDiv.id = 'ParteQuantidade';
 
             var selectPrato = document.createElement('select');
             selectPrato.addEventListener('change', reacalcularValorTotal);
             selectPrato.addEventListener('change', verificarPrato);
             selectPrato.name = 'pratos[]';
-            selectPrato.id = 'pratoNovo';
+            selectPrato.id = 'prato';
 
             var labelPrato = document.createElement('label');
             labelPrato.innerText = "Prato ";
@@ -190,24 +197,28 @@
 
             var divItensDoPedido = document.getElementById('itensDoPedido');
             
-            divIngrediente.appendChild(labelPrato);
-            divIngrediente.appendChild(selectPrato);
+            primeiraDiv.appendChild(labelPrato);
+            primeiraDiv.appendChild(selectPrato);
 
-            divIngrediente.appendChild(labelQuantidade);
-            divIngrediente.appendChild(inputQuantidade);
+            segundaDiv.appendChild(labelQuantidade);
+            segundaDiv.appendChild(inputQuantidade);
 
-            
+            Item.appendChild(primeiraDiv);
+            Item.appendChild(segundaDiv);
 
-            var botaoExcluir = document.createElement('button');
-            botaoExcluir.type = 'button';
-            botaoExcluir.onclick = function(){
+            var botaoExcluir = document.createElement('img');
+            botaoExcluir.src = 'https://cdn-icons-png.flaticon.com/128/1214/1214428.png';
+                botaoExcluir.className = 'excluir';
+                botaoExcluir.onclick = function(){
                 excluirIngrediente(botaoExcluir);
             };
             botaoExcluir.innerText = 'Lixeira/Excluir Ingrediente';
 
-            divIngrediente.appendChild(botaoExcluir);
+            Item.appendChild(botaoExcluir);
 
-            divItensDoPedido.appendChild(divIngrediente);
+            divItensDoPedido.appendChild(Item);
+
+            divItensDoPedido.appendChild('<br>');
         }
 
         function alterarDadosCliente(event)

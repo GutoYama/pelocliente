@@ -183,7 +183,7 @@
 
             setTimeout(function(){
                 elemento.className = "falaGabriel";
-                elemento.innerHTML = "Como você não não concluiu a entrega? Isso é pelo meu cliente";
+                elemento.innerHTML = "Como você não concluiu a entrega? Isso é pelo meu cliente";
             }, 600);
 
             setTimeout(function(){

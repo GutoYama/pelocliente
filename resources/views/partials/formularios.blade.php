@@ -107,6 +107,7 @@
         .composicao{
             display: flex;
             flex-direction: row;
+            align-items: center;
             gap: 10px;
         }
 
@@ -122,7 +123,7 @@
 
         .composicao button{
             position: relative;
-            right: 15px;
+            right: 25px;
             border-radius: 15px;
             cursor: pointer;
         }

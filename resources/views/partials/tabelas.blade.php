@@ -11,7 +11,6 @@
                 margin: 20px;
                 border-collapse: collapse;
                 width: 100%;
-                overflow-y: hidden;
             }
 
             .tabelaComposicao{
