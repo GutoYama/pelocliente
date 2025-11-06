@@ -37,7 +37,8 @@
                 <div id='dadosDoCliente'>
 
                     <div class="endereco">
-                        <label>Endereço: {{$pedido[0]->endereco}}</label>
+                        <label>Endereço</label>
+                        <input value='{{$pedido[0]->endereco}}' name='enderecoEntrega' id='enderecoEntrega'>
                     </div>
 
             <center><button class="botaoPedido" type='button' onclick='adicionarItem()'>Adicionar Item</button></center>
@@ -217,11 +218,9 @@
             {
                 if (clientes[i].cod_cliente == cod_cliente)
                 {
-                    var enderecoCliente = document.getElementById('endereco');
-                    var cpfCliente = document.getElementById('cpf');
+                    var enderecoCliente = document.getElementById('enderecoEntrega');
 
                     enderecoCliente.innerText = clientes[i].endereco;
-                    cpfCliente.innerText = clientes[i].cpf;
 
                     alert('Campo "Endereço" será substituído pelo endereço do cliente cadastrado no sistema')
                     document.getElementById('enderecoEntrega').value = clientes[i].endereco;

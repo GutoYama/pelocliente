@@ -614,7 +614,7 @@ Route::get('/pedidoEditar_bd', function(Request $request){
         $itens_pedido->addItens_pedido($request['pratos'][$i], $request->query('cod_pedido'), $request['quantidades'][$i]);
     }
 
-    return view('menu');
+    return redirect()->route('pedido');
 });
 
 
