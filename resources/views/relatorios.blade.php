@@ -25,6 +25,14 @@
                 cursor: pointer;
             }
 
+            #botaoLucro{
+                background-image: linear-gradient(to top, #FFDE48, #E14339);
+            }
+
+            #botaoPratoMaisVendido{
+                background-image: linear-gradient(to top, #FFDE48, #E14339);
+            }
+
             #botaoCompraPorCliente{
                 background-image: linear-gradient(to top, #FFDE48, #E14339);
             }
@@ -44,9 +52,6 @@
                 position: absolute;
                 width: 97.5%;
                 background-color: #E0B27A;
-            }
-
-            nav{
             }
 
             #RELATORIO_PRATOS_MAIS_VENDIDOS{
